@@ -28,7 +28,7 @@ The two rules are **one registered plugin class**, configured twice. The reason 
 | SDK | `WEBCON.BPS.2026.SDK.Libraries` 26.1.1.26 |
 | External dependency | none — `HttpClient` from the BCL |
 | Storage | none; the instance is the only store |
-| Testing | xUnit against recorded register responses; no network (NFR-2) |
+| Testing | xUnit against recorded register responses; no network (NFR-2). The test project targets `net10.0` — the SDK on the build machine — not the `net8.0` this plan first said. The shipped assembly is unaffected: it is `netstandard2.0`, which both consume |
 | Target | BPS Service (.NET Framework 4.7.2) and Portal (.NET 9), one assembly |
 
 ## Constitution Check

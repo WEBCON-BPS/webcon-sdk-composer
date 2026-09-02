@@ -1,0 +1,32 @@
+{
+  "result": {
+    "subject": {
+      "name": "ORLEN SPÓŁKA AKCYJNA",
+      "nip": "7740001454",
+      "statusVat": "Czynny",
+      "regon": "610188201",
+      "pesel": null,
+      "krs": "0000028860",
+      "residenceAddress": null,
+      "workingAddress": "CHEMIKÓW 7, 09-411 PŁOCK",
+      "representatives": [],
+      "authorizedClerks": [],
+      "partners": [],
+      "registrationLegalDate": "1993-07-05",
+      "registrationDenialBasis": null,
+      "registrationDenialDate": null,
+      "restorationBasis": null,
+      "restorationDate": null,
+      "removalBasis": null,
+      "removalDate": null,
+      "exemptionSmeDate": null,
+      "accountNumbers": [
+        "40124010661111001156329830",
+        "52113000070003901111200009"
+      ],
+      "hasVirtualAccounts": true
+    },
+    "requestId": "PqWNr-98e491f",
+    "requestDateTime": "02-09-2026 09:12:39"
+  }
+}

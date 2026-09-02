@@ -23,17 +23,19 @@ tests/VatWhitelist.Tests/          xUnit, offline only
 
 ## Phase 1: Setup
 
-- [ ] **T001** Add `tests/VatWhitelist.Tests/` as an xUnit project targeting `net8.0`,
+- [x] **T001** Add `tests/VatWhitelist.Tests/` as an xUnit project targeting `net8.0`,
   referencing `addons/VatWhitelist`.
-  **Accept**: `dotnet test` runs and reports 0 tests, 0 failures.
+  **Accept**: `dotnet test` runs and reports 0 tests, 0 failures. *(Done: targets
+  `net10.0`, the SDK present on the build machine.)*
 
-- [ ] **T002** Record the register fixtures into `tests/VatWhitelist.Tests/Fixtures/`, from
+- [x] **T002** Record the register fixtures into `tests/VatWhitelist.Tests/Fixtures/`, from
   the responses already captured in step 3 — no new network calls.
   Files: `active-payer.json`, `not-found.json`, `error-wl115.json`, `error-wl103.json`.
   **Accept**: `active-payer.json` still contains `exemptionSmeDate` and
-  `hasVirtualAccounts` (NFR-4 has something to prove itself against), and contains no bank
-  account numbers (the live response carried 236 of them; they are irrelevant here and
-  bloat the fixture).
+  `hasVirtualAccounts` (NFR-4 has something to prove itself against), and the live
+  response's 236 bank account numbers are cut to **two** — not zero, as this criterion first
+  said. Two keeps `accountNumbers` an array of strings, which is a shape a deserialiser can
+  get wrong; zero would have made it an empty array and tested nothing.
 
 ---
 
@@ -41,20 +43,20 @@ tests/VatWhitelist.Tests/          xUnit, offline only
 
 Blocks everything else: the action validates before it spends a lookup.
 
-- [ ] **T003** [US1] `Plugin/Nip.cs` — a static class over strings. Normalise (strip
+- [x] **T003** [US1] `Plugin/Nip.cs` — a static class over strings. Normalise (strip
   separators, optional `PL` prefix), then mod-11 with weights 6,5,7,2,3,4,5,6,7. Returns a
   result carrying validity and a reason code (`EMPTY`, `LENGTH`, `NONDIGIT`, `CHECKSUM`).
   **No SDK type may appear in this file.**
   **Accept**: the file compiles with zero `using WebCon.*`, verified by grep, not by eye.
 
-- [ ] **T004** [P] [US1] Tests for T003 covering: `7740001454` valid · `7740001455` invalid
+- [x] **T004** [P] [US1] Tests for T003 covering: `7740001454` valid · `7740001455` invalid
   `CHECKSUM` · `774-000-14-54` valid · `PL7740001454` valid · `774000145` invalid `LENGTH` ·
   `774000145X` invalid `NONDIGIT` · `""` and `null` invalid `EMPTY` · a NIP whose mod-11
   remainder computes to 10, which is never valid.
   **Accept**: all pass; the remainder-of-10 case is present and named, because it is the one
   branch a naive implementation gets wrong.
 
-- [ ] **T005** [US1] `Plugin/NipValidationRule.cs` + `NipValidationRuleConfig.cs`. One class,
+- [x] **T005** [US1] `Plugin/NipValidationRule.cs` + `NipValidationRuleConfig.cs`. One class,
   `ConfigEditableEnum` mode (`IsValid` | `Reason`), NIP received through
   `ConfigEditableText` with `TagEvaluationMode`.
   **Accept**: returns `CreateBoolResult` in `IsValid` mode and `CreateStringResult` in
@@ -63,7 +65,7 @@ Blocks everything else: the action validates before it spends a lookup.
   grep for the name matches the comment that documents its absence and reports a false
   positive. The attribute compiles here and fails silently at runtime (plan.md, Decision 2).
 
-- [ ] **T006** [US1] Two manifest entries pointing at the one class in T005, named
+- [x] **T006** [US1] Two manifest entries pointing at the one class in T005, named
   `Nip.IsValid` and `Nip.Validate`.
   **Accept**: `Webcon.Addon.VatWhitelist.json` has two entries with distinct `Guid` and
   `Name` and an identical `Class`.
