@@ -1,6 +1,22 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version: 2.3.0 (MINOR - new principle VII, Secret Handling)
+
+What changed:
+  1. New Principle VII, Secret Handling. The rule already existed in AGENTS.md ("never
+     hardcode secrets") but had no constitutional standing, so nothing bound a spec or a
+     plan to it. It now does, and it names the mechanism rather than the intention:
+     [ConfigEditableText(IsPasswordField = true)], which Designer Studio stores encrypted.
+  2. Principle II was NOT changed. netstandard2.0 was already pinned there, and
+     templates/dotnet-plugin already emits it, so there was nothing to pin.
+
+Templates reviewed: no structural change needed - the Constitution Check gate reads this
+file dynamically.
+Deferred TODOs: none.
+
+Previous version
+----------------
 Version: 2.2.1 (PATCH — terminology: the product is "WEBCON", not "WEBCON BPS"; identifiers such as
 the WEBCON.BPS.* NuGet packages and the WEBCON-BPS GitHub organisation are unchanged)
 
@@ -157,6 +173,26 @@ Dependency placement follows the runtime split. This is the most common integrat
 - **Rationale**: friction in the first fifteen minutes is the difference between a working
   add-on and an abandoned clone.
 
+### VII. Secret Handling
+
+A credential never exists in the repository, in the process, or in a log line.
+
+- Every credential — API key, token, password, connection string — MUST be a plugin
+  configuration property marked `[ConfigEditableText(IsPasswordField = true)]`. Designer
+  Studio stores that value encrypted and masks it in the configuration UI.
+- A credential MUST NOT live in source, in `appsettings`, in a global or application
+  constant, or in a form field. Constants and fields are readable by anyone who can open the
+  process in Designer Studio; a plugin configuration password field is not.
+- A plugin MUST NOT write a credential, or a request that carries one, to
+  `PluginLogger`. Plugin logs are visible in Designer Studio and are attached to the
+  instance history.
+- If an integration needs **no** credential, the spec MUST say so explicitly, and say why.
+  "No key required" is a fact about the endpoint that a reviewer has to be able to check —
+  silence reads as an oversight, not as an absence.
+- **Rationale**: the encrypted configuration store is the only place in the product built to
+  hold a secret. Every other location that will accept one leaks it to a wider audience than
+  the person who typed it.
+
 ## Technology Stack & Hard Constraints
 
 - **.NET add-on**: C#, `netstandard2.0` (or `net9.0`, Portal-only, justified in the spec),
@@ -202,4 +238,4 @@ principle, MINOR for a new principle or materially expanded guidance, PATCH for
 clarifications. Plans MUST pass the Constitution Check gate; a justified deviation belongs
 in the plan Complexity Tracking section, not in silence.
 
-**Version**: 2.2.1 | **Ratified**: 2026-08-31 | **Last amended**: 2026-10-02
+**Version**: 2.3.0 | **Ratified**: 2026-08-31 | **Last amended**: 2026-09-02
