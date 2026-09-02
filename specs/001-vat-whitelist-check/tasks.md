@@ -163,7 +163,7 @@ Blocks everything else: the action validates before it spends a lookup.
   joins them and then verifies the zip against its own manifest — including reading the
   packaged DLL's PE metadata to confirm each declared `Class` is actually in it.)*
 
-- [ ] **T017** `addons/VatWhitelist/README.md` — what it does, how an administrator configures
+- [x] **T017** `addons/VatWhitelist/README.md` — what it does, how an administrator configures
   it (Definition of Done #4).
   **Accept**: every config property in the manifest appears in the README, and the README
   agrees with `process-setup.md` rather than restating it differently.
