@@ -8,6 +8,14 @@
       "Assembly": "Webcon.Addon.VatWhitelist",
       "Guid": "2c43ac71-8f7a-49de-8b7e-433aefde98e0",
       "Name": "Nip.IsValid"
+    },
+    {
+      "Class": "Webcon.Addon.VatWhitelist.Plugin.NipValidationRule",
+      "Description": "Returns why a value is not a valid Polish NIP: VALID, EMPTY, LENGTH, NONDIGIT or CHECKSUM. Register as a text rule and set Mode = Reason. Makes no network call.",
+      "Type": "CustomBusinessRule",
+      "Assembly": "Webcon.Addon.VatWhitelist",
+      "Guid": "2d808a6e-0917-4e5c-9f4b-f0e09743d97f",
+      "Name": "Nip.Validate"
     }
   ],
   "serviceDependenciesPaths": [],
