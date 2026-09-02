@@ -158,6 +158,12 @@ timestamp are stored on the instance, and survive a reload.
   *we* invent — user messages, configuration labels, documentation — is English. Reason codes
   are language-neutral identifiers. No mixing inside one string.
 
+  This binds what the **action writes**. It cannot bind what the badge **reads**: the badge
+  renders whatever fills its field, and a process may normalise the status into its own
+  vocabulary first — one already does, storing `Active` where the register said `Czynny`. So
+  the badge MUST NOT hardcode the values it treats as an active payer, and MUST NOT assert
+  "not an active VAT payer" about a status it does not recognise.
+
 - **NFR-4**: Deserialisation MUST tolerate fields the register returns that this
   specification does not name. Two such fields already exist in live responses
   (`exemptionSmeDate`, `hasVirtualAccounts`). A strict deserialiser turns the Ministry adding

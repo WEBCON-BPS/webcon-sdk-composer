@@ -193,3 +193,30 @@ offline and the boundary they live on is the browser:
 
 They need a registered package on a real instance. Recorded here so the gap is a known one
 rather than a surprise at the end.
+
+### What the real instance actually found (2026-09-02)
+
+Two of the three, plus two nobody predicted:
+
+1. **`String(model)` → `[object Object]`.** Confirmed on the form, verbatim. Not cosmetic:
+   the badge compared that string against `Czynny`, failed, and told the user in a confident
+   red that the contractor was **not an active VAT payer** — including when they were.
+2. **`EmptyValueValidator` reports every field as filled.** Same root cause, and it never
+   appears on screen: a required-field check that silently never fires.
+3. **The duplicated label did not happen.** The template renders its own `<label>`; this
+   control was written as a badge rather than adapted from the template's input, so that
+   markup never existed here. Predicted, and predicted wrongly.
+4. **Not predicted — the badge contradicted itself.** It printed the status `Active` and
+   captioned it `Not an active VAT payer` in the same line, because only `Czynny` was ever
+   recognised. Worse than being wrong: a reader cannot tell which half to believe. Fixed by
+   deleting the caption. The badge shows the status and nothing else; the rest is a tooltip.
+5. **Not predicted — `plan.md` had a dead requirement.** It promised the badge would show
+   the VAT status *and* the verification date. A control sees **one field**, so the date
+   cannot reach it; the plan read it from `sdkConfiguration`, which is static per-field
+   configuration and cannot carry a per-instance value. That code would never have run. The
+   real process had already solved it by packing `status|checkedOn|requestId` into one
+   value, which is the correct answer and one the plan never considered.
+
+None of this was caught by 32→50 offline tests, ESLint, a clean build with zero warnings,
+*Verify plugins*, or the package check that reads PE metadata. Every gate said yes. All of
+it lives on the boundary those gates deliberately do not cross.

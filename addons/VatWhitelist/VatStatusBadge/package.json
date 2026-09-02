@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx gulp",
     "check": "npx gulp check",
+    "check:model": "node --no-warnings checks/readModelValue.check.js",
     "lint": "npx gulp lint",
     "format": "npx gulp format",
     "postinstall": "npm run-script build",

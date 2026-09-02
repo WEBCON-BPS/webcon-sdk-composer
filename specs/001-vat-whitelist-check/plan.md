@@ -214,7 +214,20 @@ Two constraints carried into implementation:
   zip `publish-sdk` actually produces, not assumed.
 - The value WEBCON hands a control as `model` is **not reliably a string**. The shape is
   documented nowhere. This is deferred to implementation and is expected to need a real form
-  to pin down.
+  to pin down. **Confirmed on a real form**: it arrives as an object, `String(model)` yields
+  `[object Object]`, and `readModelValue` now handles it.
+
+- **The one-field limit shapes the data, not just the code.** A control sees only its own
+  field, so a badge that shows the status *and* the check date *and* the register reference
+  needs all three inside one value. This plan originally read the date from
+  `sdkConfiguration`, which is static per-field configuration and cannot carry a per-instance
+  value — a hole found by looking at a real form, not by reading the plan. The field may
+  therefore carry `status|checkedOn|requestId`; a bare status also works.
+
+- **The badge shows the status and nothing else**, with the rest on hover. A caption beside
+  the status can only agree with it or contradict it, and the first real form produced
+  `Active` captioned `Not an active VAT payer` in the same line. A badge that argues with
+  itself is worse than a badge that says less.
 
 ---
 

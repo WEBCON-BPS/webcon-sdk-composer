@@ -113,7 +113,30 @@ would render and then do nothing at runtime.
 
 ### `VatStatusBadge`
 
-No configuration. It renders the value of the field it replaces.
+It renders the value of the field it replaces. Two things are worth knowing.
+
+**The field may carry more than the status.** A JS control sees only its own field, so if you
+want the badge's tooltip to show the check date and the register's reference too, the field
+has to hold all three, packed as `status|checkedOn|requestId`:
+
+    Czynny|2026-09-02|4S3nZ-98e4843
+
+A bare status works exactly as well; everything after the first `|` is optional and only
+affects the tooltip. The badge itself always shows the status and nothing else.
+
+**Configuration** (the SDK configuration box next to the field, JSON, optional):
+
+| Key | What to enter | Default |
+|---|---|---|
+| `activeValues` | The status values that mean "active VAT payer" **in your process's own vocabulary**. Set this if the field holds something other than the register's `Czynny` | `["Czynny", "Active"]` |
+
+Example, for a process that stores its own English status:
+
+    {"activeValues": ["Active"]}
+
+A status the badge does not recognise renders grey and neutral, never red. It is not the
+badge's place to assert that a contractor is not an active VAT payer on the strength of a
+word it has never seen.
 
 ## 5. Secrets
 
