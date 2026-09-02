@@ -151,12 +151,17 @@ Blocks everything else: the action validates before it spends a lookup.
 
 ## Phase 6: Package
 
-- [ ] **T016** `tools/Build-Addon.ps1 -Path addons/VatWhitelist` produces
+- [x] **T016** `tools/Build-Addon.ps1 -Path addons/VatWhitelist` produces
   `publish/VatWhitelist.zip`.
   **Accept**: the zip contains the manifest, the `.dll`, and the control's `.bpspkg`; the
   manifest lists **four** extensions; and the `Class` named by each .NET entry is present in
   the packaged assembly — checked against the assembly, not against the source, because a
   stale `bin/` can otherwise ship a manifest that claims something the zip does not contain.
+  *(Done, and the trap is real: `Build-Addon.ps1` looks for a control's `.bpspkg` in
+  `<add-on>/bin/`, which is gitignored, while the nested npm project writes it to
+  `VatStatusBadge/package/`. Nothing connects the two and nothing warns. `Package.ps1`
+  joins them and then verifies the zip against its own manifest — including reading the
+  packaged DLL's PE metadata to confirm each declared `Class` is actually in it.)*
 
 - [ ] **T017** `addons/VatWhitelist/README.md` — what it does, how an administrator configures
   it (Definition of Done #4).
