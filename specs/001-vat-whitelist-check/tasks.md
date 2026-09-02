@@ -58,8 +58,10 @@ Blocks everything else: the action validates before it spends a lookup.
   `ConfigEditableEnum` mode (`IsValid` | `Reason`), NIP received through
   `ConfigEditableText` with `TagEvaluationMode`.
   **Accept**: returns `CreateBoolResult` in `IsValid` mode and `CreateStringResult` in
-  `Reason` mode; the config class contains **no** `ConfigEditableFormFieldID` — grep-checked,
-  because that attribute compiles here and fails silently at runtime (plan.md, Decision 2).
+  `Reason` mode; the config class contains **no** `ConfigEditableFormFieldID` in **attribute
+  position** — `sed 's|///.*||' | grep -E '\[\s*ConfigEditableFormFieldID'`, because a plain
+  grep for the name matches the comment that documents its absence and reports a false
+  positive. The attribute compiles here and fails silently at runtime (plan.md, Decision 2).
 
 - [ ] **T006** [US1] Two manifest entries pointing at the one class in T005, named
   `Nip.IsValid` and `Nip.Validate`.

@@ -1,6 +1,26 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version: 2.4.0 (MINOR - new principle VIII, No I/O in a Business Rule)
+
+What changed:
+  1. New Principle VIII. A business rule MUST NOT perform network or file I/O, and MUST NOT
+     carry a ConfigEditableFormFieldID. Both restrictions follow from the SDK's own type
+     surface: the platform chooses how often a rule is evaluated, and
+     CustomBusinessRuleContextInfo has no CurrentDocument.
+
+  HONEST NOTE ON ITS VALUE. This principle caught nothing. The one design that would have
+  violated it was already rejected in specs/001-vat-whitelist-check/plan.md, Decision 1, one
+  commit earlier, on exactly these grounds. Writing it here does not fix a defect; it turns
+  an argument that had to be re-derived from a quota figure and a reflected SDK type into a
+  constraint the next add-on can simply read. That is worth a principle even in a run where
+  it changes no code.
+
+Templates reviewed: no structural change needed.
+Deferred TODOs: none.
+
+Previous version
+----------------
 Version: 2.3.0 (MINOR - new principle VII, Secret Handling)
 
 What changed:
@@ -10,10 +30,6 @@ What changed:
      [ConfigEditableText(IsPasswordField = true)], which Designer Studio stores encrypted.
   2. Principle II was NOT changed. netstandard2.0 was already pinned there, and
      templates/dotnet-plugin already emits it, so there was nothing to pin.
-
-Templates reviewed: no structural change needed - the Constitution Check gate reads this
-file dynamically.
-Deferred TODOs: none.
 
 Previous version
 ----------------
@@ -193,6 +209,33 @@ A credential never exists in the repository, in the process, or in a log line.
   hold a secret. Every other location that will accept one leaks it to a wider audience than
   the person who typed it.
 
+### VIII. No I/O in a Business Rule
+
+A business rule computes. It does not call out.
+
+- A `CustomBusinessRule<TConfig>` MUST NOT perform network I/O, file I/O, or any other
+  external call. Computation over its configuration and the values the platform substituted
+  into it — that is the whole permitted surface.
+- **The platform, not the plugin, decides how often a rule is evaluated**: form load, field
+  change, visibility recalculation, once per row of a report. The SDK gives a rule no way to
+  learn it has already run. So any per-call cost a rule incurs — a quota, a bill, a rate
+  limit, load on someone else's server — is multiplied by a number the author does not choose
+  and cannot observe.
+- **A rule also has no document.** `CustomBusinessRuleContextInfo` declares no members of its
+  own and inherits `CurrentProcessID`, `CurrentUser`, `CurrentDbId`, `BPSPortalUrl`,
+  `Environment`, `CancellationToken` and `PluginLogger`. There is no `CurrentDocument`, and no
+  document ID. A rule that fetches something has nowhere to put it and no way to tell anyone
+  it already did.
+- Work that calls an external system belongs in a **custom action**, which runs when somebody
+  chose that it should, and whose `ActionContextInfo` declares `CurrentDocument`.
+- A configuration attribute that implies document access — `ConfigEditableFormFieldID` on a
+  rule — MUST NOT appear on a rule's configuration class. It compiles, renders in Designer
+  Studio and passes *Verify plugins*, then does nothing at runtime. Input reaches a rule
+  through `ConfigEditableText` with `TagEvaluationMode`.
+- **Rationale**: the two facts above are properties of the SDK's type surface, not opinions,
+  and both are invisible at the call site. Nothing fails at build time, nothing fails at
+  registration, and the cost appears in production as a quota nobody can account for.
+
 ## Technology Stack & Hard Constraints
 
 - **.NET add-on**: C#, `netstandard2.0` (or `net9.0`, Portal-only, justified in the spec),
@@ -238,4 +281,4 @@ principle, MINOR for a new principle or materially expanded guidance, PATCH for
 clarifications. Plans MUST pass the Constitution Check gate; a justified deviation belongs
 in the plan Complexity Tracking section, not in silence.
 
-**Version**: 2.3.0 | **Ratified**: 2026-08-31 | **Last amended**: 2026-09-02
+**Version**: 2.4.0 | **Ratified**: 2026-08-31 | **Last amended**: 2026-09-02
