@@ -2,12 +2,12 @@
   "version": "26",
   "extensions": [
     {
-      "Class": "Webcon.Addon.VatWhitelist.Plugin.VatWhitelistRule",
-      "Description": "TODO: what this plugin does, as an administrator would read it.",
+      "Class": "Webcon.Addon.VatWhitelist.Plugin.NipValidationRule",
+      "Description": "Returns true when the value is a structurally valid Polish NIP (ten digits, mod-11 check digit). Makes no network call.",
       "Type": "CustomBusinessRule",
       "Assembly": "Webcon.Addon.VatWhitelist",
       "Guid": "2c43ac71-8f7a-49de-8b7e-433aefde98e0",
-      "Name": "VatWhitelist"
+      "Name": "Nip.IsValid"
     }
   ],
   "serviceDependenciesPaths": [],
