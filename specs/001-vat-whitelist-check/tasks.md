@@ -74,45 +74,57 @@ Blocks everything else: the action validates before it spends a lookup.
 
 ## Phase 3: User Story 2 — the lookup (FR-3, FR-4, FR-5)
 
-- [ ] **T007** [US2] `Plugin/Register/VatRegisterResponse.cs` — the response model. Must
+- [x] **T007** [US2] `Plugin/Register/VatRegisterResponse.cs` — the response model. Must
   deserialise the fixture from T002 **without** failing on `exemptionSmeDate` or
   `hasVirtualAccounts`, and without enumerating every field the register sends (NFR-4).
   **Accept**: a test adds an invented field `thisFieldDoesNotExist` to the fixture and
   deserialisation still succeeds.
 
-- [ ] **T008** [US2] `Plugin/Register/VatRegisterError.cs` — the **flat** `{code, message}`
+- [x] **T008** [US2] `Plugin/Register/VatRegisterError.cs` — the **flat** `{code, message}`
   shape, at the top level of the body. Not `{exception:{...}}`.
   **Accept**: a test parses the recorded `WL-115` body and reads `code == "WL-115"`. A test
   parses the swagger's wrapped example and asserts the parser reports it as unrecognised
   rather than silently yielding nulls.
 
-- [ ] **T009** [US2] `Plugin/Register/VatRegisterClient.cs` — a **static, shared**
+- [x] **T009** [US2] `Plugin/Register/VatRegisterClient.cs` — a **static, shared**
   `HttpClient`. A per-call `new HttpClient()` exhausts sockets under load; that is the
   standard failure, not a hypothetical.
   **Accept**: grep finds exactly one `new HttpClient` in the file and it is `static readonly`.
 
-- [ ] **T010** [US2] Warsaw-day cache in the client: same NIP + same register day ⇒ one HTTP
+- [x] **T010** [US2] Warsaw-day cache in the client: same NIP + same register day ⇒ one HTTP
   call. The day is computed in **Europe/Warsaw**, never UTC (finding 6).
   **Accept**: a test with a stubbed clock at `23:30` and `00:30` Warsaw proves two distinct
   cache keys, and a test at `01:00` Warsaw / `23:00` UTC proves the key follows Warsaw, not
   UTC. Serves NFR-5 and SC-002.
 
-- [ ] **T011** [US2] `Plugin/FetchVatPayerDataAction.cs` + config. Validate with `Nip` first,
+- [x] **T011** [US2] `Plugin/FetchVatPayerDataAction.cs` + config. Validate with `Nip` first,
   then call, then map onto the configured fields.
-  **Accept**: given the invalid-NIP fixture path, `VatRegisterClient` is never invoked —
-  asserted with a stub client that throws if called. That is FR-1 protecting NFR-5, tested
-  rather than asserted in prose.
+  ~~**Accept**: given the invalid-NIP fixture path, `VatRegisterClient` is never invoked —
+  asserted with a stub client that throws if called.~~
+  **This criterion turned out to be unachievable, and the criterion was corrected rather
+  than the code contorted to satisfy it.** `RunAsync` takes `RunCustomActionParams`, whose
+  `Context.CurrentDocument` is a `CurrentDocumentData` — a type with no public constructor,
+  backed by BPS internals. There is no way to build one in a test process. **No SDK action's
+  `RunAsync` is testable offline**, in this add-on or any other.
+  **Accept, revised**: the guard is one line, immediately above the only call site, and is
+  verified by inspection. What *is* tested is `Nip.Validate` itself (35 cases) and the
+  client's behaviour (15 cases). The wiring between them is covered by step 14's run on a
+  real form, and by nothing else.
 
-- [ ] **T012** [US2] FR-4: `subject == null` ⇒ success with a negative answer, fields written,
+- [x] **T012** [US2] FR-4: `subject == null` ⇒ success with a negative answer, fields written,
   `HasErrors` stays false. Only a transport failure or a `WL-*` error sets it.
-  **Accept**: two tests — `not-found.json` leaves `HasErrors == false` and writes the fields;
-  `error-wl103.json` sets `HasErrors == true` and the message names the code.
+  **Accept, revised** — same limitation as T011: `HasErrors` lives on
+  `RunCustomActionParams` and cannot be observed offline. What is tested is the layer below
+  it, where the distinction actually lives: `not-found.json` yields
+  `VatLookupOutcome.NotInRegister` with the `requestId` intact, and `error-wl103.json`
+  yields `Failed` carrying `WL-103`. The action turns the first into a clear `HasErrors`
+  and the second into a set one, in four lines that inspection covers.
 
 ---
 
 ## Phase 4: User Story 3 — evidence (FR-6)
 
-- [ ] **T013** [US3] Write `requestId` and `requestDateTime` to the configured fields.
+- [x] **T013** [US3] Write `requestId` and `requestDateTime` to the configured fields.
   `requestDateTime` is stored **verbatim as text**, not parsed into a date.
   **Accept**: a test asserts the written value is byte-identical to the fixture's
   `"02-09-2026 09:12:39"`. If it round-trips through `DateTime`, the test fails — which is

@@ -16,6 +16,14 @@
       "Assembly": "Webcon.Addon.VatWhitelist",
       "Guid": "2d808a6e-0917-4e5c-9f4b-f0e09743d97f",
       "Name": "Nip.Validate"
+    },
+    {
+      "Class": "Webcon.Addon.VatWhitelist.Plugin.FetchVatPayerDataAction",
+      "Description": "Checks a NIP against the Ministry of Finance VAT whitelist and writes the status, the registered name and the register's own request ID onto the instance. Attach to a button or a path -- never to step entry, a timer or a field default: each firing spends one of 100 daily lookups.",
+      "Type": "CustomAction",
+      "Assembly": "Webcon.Addon.VatWhitelist",
+      "Guid": "f158458d-6554-46e3-80eb-198e951ee8a4",
+      "Name": "FetchVatPayerData"
     }
   ],
   "serviceDependenciesPaths": [],
