@@ -1,0 +1,15 @@
+{
+  "version": "26",
+  "extensions": [
+    {
+      "Class": "Webcon.Addon.VatWhitelist.Plugin.VatWhitelistRule",
+      "Description": "TODO: what this plugin does, as an administrator would read it.",
+      "Type": "CustomBusinessRule",
+      "Assembly": "Webcon.Addon.VatWhitelist",
+      "Guid": "2c43ac71-8f7a-49de-8b7e-433aefde98e0",
+      "Name": "VatWhitelist"
+    }
+  ],
+  "serviceDependenciesPaths": [],
+  "dependencies": []
+}
