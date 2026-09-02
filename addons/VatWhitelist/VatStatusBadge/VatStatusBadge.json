@@ -1,0 +1,9 @@
+[
+  {
+    "Guid": "b38a0b7b-ff9b-494d-bf1e-e75f9ba2b909",
+    "Name": "VatStatusBadge",
+    "Description": "Displays the VAT whitelist status returned by FetchVatPayerData. Display only: it cannot re-run the check.",
+    "Type": "FormFieldExtension",
+    "BPSControl": "VatStatusBadge"
+  }
+]

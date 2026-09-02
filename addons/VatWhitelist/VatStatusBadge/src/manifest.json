@@ -1,0 +1,10 @@
+{
+  "packageName": "VatStatusBadge",
+  "solutionId": "b38a0b7b-ff9b-494d-bf1e-e75f9ba2b909",
+  "description": "Displays the VAT whitelist status returned by FetchVatPayerData. Display only: it cannot re-run the check.",
+  "files": {
+    "component": "./src/CustomControlComponent.js",
+    "emptyValueValidator": "./src/EmptyValueValidator.js",
+    "additionalValidator": "./src/AdditionalValidator.js"
+  }
+}

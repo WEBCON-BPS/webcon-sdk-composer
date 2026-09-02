@@ -244,7 +244,8 @@ addons/VatWhitelist/
 │   ├── FetchVatPayerDataAction.cs        FR-3..FR-6
 │   ├── FetchVatPayerDataConfig.cs
 │   └── Register/                         response model, client, Warsaw-day cache
-├── Control/                              VatStatusBadge (React, nested npm project)
+├── VatStatusBadge/                       the JS control (React, nested npm project).
+│                                         Named by New-Addon.ps1 -Destination, not "Control/"
 └── Properties/AssemblyInfo.cs
 
 tests/VatWhitelist.Tests/                 xUnit, offline fixtures only

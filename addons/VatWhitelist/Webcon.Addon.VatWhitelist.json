@@ -24,6 +24,13 @@
       "Assembly": "Webcon.Addon.VatWhitelist",
       "Guid": "f158458d-6554-46e3-80eb-198e951ee8a4",
       "Name": "FetchVatPayerData"
+    },
+    {
+      "Guid": "b38a0b7b-ff9b-494d-bf1e-e75f9ba2b909",
+      "Name": "VatStatusBadge",
+      "Description": "Displays the VAT whitelist status returned by FetchVatPayerData. Display only: it cannot re-run the check.",
+      "Type": "FormFieldExtension",
+      "BPSControl": "VatStatusBadge"
     }
   ],
   "serviceDependenciesPaths": [],

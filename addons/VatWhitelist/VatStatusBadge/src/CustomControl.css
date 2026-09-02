@@ -1,0 +1,23 @@
+.vat-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.vat-badge__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    align-self: center;
+    flex: 0 0 auto;
+    background: #9a9a9a;
+}
+
+.vat-badge--active .vat-badge__dot   { background: #1f6f32; }
+.vat-badge--inactive .vat-badge__dot { background: #c00000; }
+
+.vat-badge__status  { font-weight: 600; }
+.vat-badge__caption { color: #4a4a4a; }
+.vat-badge__checked { color: #797979; font-size: 12px; }

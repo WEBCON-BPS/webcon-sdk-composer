@@ -134,15 +134,18 @@ Blocks everything else: the action validates before it spends a lookup.
 
 ## Phase 5: The control
 
-- [ ] **T014** `Control/` — `VatStatusBadge`, scaffolded with
+- [x] **T014** `Control/` — `VatStatusBadge`, scaffolded with
   `tools/New-Addon.ps1 -Type control` into a nested project. Display-only: it renders the
   status and the check date and has no refresh (plan.md, Decision 3).
   **Accept**: `npm run build` produces a `.bpspkg`.
 
-- [ ] **T015** Manifest entry for the control.
+- [x] **T015** Manifest entry for the control.
   **Accept**: the entry has `Type: "FormFieldExtension"` and a `BPSControl` key, and has
   **no** `Assembly` and **no** `Class`. Verified by reading the zip `publish-sdk` actually
   produces, not by trusting `docs/packaging.md`, which documents only the .NET shape.
+  *(Done. Confirmed, and one detail beyond what we expected: the control's own manifest file
+  is a bare JSON **array** of entries, not an object with an `extensions` key. `Guid` is the
+  `solutionId` from `src/manifest.json`, and `BPSControl` is the package name.)*
 
 ---
 
