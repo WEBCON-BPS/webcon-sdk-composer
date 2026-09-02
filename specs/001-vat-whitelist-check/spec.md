@@ -73,7 +73,8 @@ outcome rather than a failure.
 1. **Given** a NIP the register holds as an active VAT payer, **When** the check runs,
    **Then** the form shows the registered name and the status `Czynny`.
 2. **Given** a well-formed NIP the register does not hold, **When** the check runs, **Then**
-   see FR-4 — this is the open question this specification has not yet answered.
+   the form shows that the contractor is not in the whitelist, the check is reported as
+   successful, and the process can branch on the outcome.
 3. **Given** the register is unreachable, **When** the check runs, **Then** the instance is
    not modified and the failure is reported to the person who ran the check.
 
@@ -128,11 +129,13 @@ timestamp are stored on the instance, and survive a reload.
   date and determine the subject's VAT status as the register holds it on that date.
 
 - **FR-4**: When the register accepts the query but holds no subject for that NIP, the add-on
-  MUST [NEEDS CLARIFICATION: is "this NIP is not in the register" a *failure of the check*,
-  or an *answer* the process should be able to act on? The register itself does not decide
-  this for us — it answers HTTP 200 with a null subject, which is neither an error status nor
-  a result. This is a business question about what the process should do next, and it changes
-  what FR-5 has to write to the form.]
+  MUST treat that as a **successful check with a negative answer**, not as a failure. It MUST
+  write the outcome to the form exactly as it writes a positive one, and MUST NOT set the
+  action's error flag. "This contractor is not in the whitelist" is the single most
+  decision-relevant answer the register can give, and a process has to be able to branch on
+  it, report on it, and route on it. A failure flag routes it to whoever fixes integrations
+  instead of to whoever decides about the payment. Only a query the register did not answer —
+  a transport failure, or a `4xx`/`5xx` with an error code — is an error.
 
 - **FR-5**: The add-on MUST write the register's answer onto the instance: the subject's
   registered name and VAT status, and the date the check was made against.
