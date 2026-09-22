@@ -148,6 +148,41 @@ If a future version adds an endpoint that *does* need a key, it goes in the plug
 configuration as `[ConfigEditableText(IsPasswordField = true)]` — never in a constant, never
 in a form field, never in the code.
 
+## 5b. Routing: "not in the register" is a second path, not an error path
+
+This is the part the add-on cannot do for you, and the part most likely to be skipped.
+
+The register gives three outcomes, and **two of them are successes**:
+
+| Outcome | Action's error flag | What the process should do |
+|---|---|---|
+| Subject found | not set | Continue the normal path |
+| **Subject not in the register** | **not set** | **Its own path** — the decision belongs to a person, not to support |
+| Register unanswered (transport, `4xx`/`5xx`) | **set** | Retry, or route to whoever fixes integrations |
+
+A contractor absent from the whitelist is a business fact with a business consequence — the
+payment may not be deductible — so it needs a path where somebody decides, not an error
+message that sends the instance to IT. Build that path.
+
+**What to branch on, and why it is not obvious.** When the NIP is not in the register the
+action writes the **VAT status field as empty**, deliberately: leaving a previous check's
+`Czynny` next to a fresh request ID is the one outcome here that can cost real money. So the
+routing condition is *not* "status equals something". It is:
+
+> **request ID is filled** (a check completed) **AND VAT status is empty** (no subject was found)
+
+Request ID empty as well means no check has run yet — a third state, and not the same thing.
+
+| Condition on the path | Means |
+|---|---|
+| Request ID filled, status filled | Checked, subject found — read the status |
+| Request ID filled, **status empty** | **Checked, not in the register** — route here |
+| Request ID empty | Never checked — the action has not run, or it failed |
+
+Set the not-in-register path to require a comment or an approval, whatever your process needs
+for "we are paying someone the Ministry does not list". That decision is yours; the add-on's
+job is only to make the three states distinguishable.
+
 ## 6. Verification
 
 One walkthrough, costing two of the day's 100 lookups.
@@ -162,6 +197,10 @@ One walkthrough, costing two of the day's 100 lookups.
 4. Enter a NIP that is well-formed but not in the register — ten digits with a correct check
    digit, e.g. `1111111111`. **Expected:** the action **succeeds**, and the form shows the
    contractor is not in the whitelist. It must **not** report an error (FR-4).
+5. From that same instance, move the path. **Expected:** the instance takes the
+   **not-in-register path** from section 5b, not the normal one and not an error. If it takes
+   the normal path, the routing condition is missing and a contractor nobody verified will be
+   paid as if they had been.
 
 **Where failures surface.** A registration or version mismatch appears at *Verify plugins*,
 not at build time. A runtime failure appears in the action's message to the user and in the
