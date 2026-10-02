@@ -14,6 +14,35 @@ signatures instead of recalling them; Spec-Kit turns your sentence into a spec y
 and correct before any code exists; and one script turns the result into a package you can
 import — no Visual Studio required.
 
+## How it works
+
+```mermaid
+flowchart TD
+    A["<b>Onboarding</b><br/>ask your agent “what next?”<br/>local or own workspace"] --> B
+    B["<b>Pick &amp; scaffold</b><br/>right add-on type · New-Addon.ps1"] --> C
+    C["<b>Specify</b> · /speckit.specify<br/>spec.md — you read and correct it"] --> D
+    D["<b>Plan</b> · /speckit.plan<br/>plan.md + process-setup.md"] --> E
+    E["<b>Tasks</b> · /speckit.tasks → /speckit.analyze"] --> F
+    F["<b>Implement</b> · /speckit.implement<br/>against the SDK reference in docs/"] --> G
+    G["<b>Build</b> · Build-Addon.ps1<br/>→ importable .zip"] --> H
+    H["<b>Register</b> in Designer Studio<br/>import · Verify plugins · run"]
+
+    D -. "in parallel" .-> P["<b>Process administrator</b><br/>prepares fields + types, constants,<br/>attach point, plugin configuration"]
+    P -.-> H
+    F -. "wrong result? fix the spec, not the code" .-> C
+
+    classDef you fill:#1e293b,stroke:#3b82f6,color:#e2e8f0
+    classDef admin fill:#2c2210,stroke:#f59e0b,color:#fde68a
+    classDef done fill:#1e293b,stroke:#f59e0b,color:#e2e8f0
+    class A,B,C,D,E,F,G you
+    class P admin
+    class H done
+```
+
+You and the agent walk the main column. Whoever administers the WEBCON process works through
+`process-setup.md` at the same time, and the two halves meet at registration. Animated version
+for slides: [`docs/images/how-it-works.gif`](docs/images/how-it-works.gif).
+
 ---
 
 ## Quickstart (about 15 minutes)
