@@ -16,6 +16,11 @@ import — no Visual Studio required.
 
 ## How it works
 
+![How SDK Composer works: onboarding, scaffold, specify, plan, tasks, implement, build, register — with the process administrator preparing the process in parallel](docs/images/how-it-works.gif)
+
+<details>
+<summary>The same flow as a diagram</summary>
+
 ```mermaid
 flowchart TD
     A["<b>Onboarding</b><br/>ask your agent “what next?”<br/>local or own workspace"] --> B
@@ -39,9 +44,10 @@ flowchart TD
     class H done
 ```
 
-You and the agent walk the main column. Whoever administers the WEBCON process works through
-`process-setup.md` at the same time, and the two halves meet at registration. Animated version
-for slides: [`docs/images/how-it-works.gif`](docs/images/how-it-works.gif).
+</details>
+
+You and the agent go through the eight steps. Whoever administers the WEBCON process works through
+`process-setup.md` at the same time, and the two halves meet at registration.
 
 ---
 
