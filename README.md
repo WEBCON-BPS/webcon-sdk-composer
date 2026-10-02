@@ -57,10 +57,11 @@ git clone https://github.com/WEBCON-BPS/webcon-sdk-composer.git
 cd webcon-sdk-composer
 ```
 
-**0. Ask your agent "what next?"** On a fresh clone it runs a short onboarding: which agent you
-use, whether your add-ons stay in this repository or go to [your own workspace](#your-own-workspace),
-the BPS version you target, the language for specs. It saves the answers, checks your machine,
-and offers to start your first add-on — which does steps 1–2 below for you.
+**0. Ask your agent "what next?"** On a fresh clone it introduces itself and Composer, then asks a
+few questions one at a time: whether your add-ons stay in this repository or go to
+[your own workspace](#your-own-workspace), the BPS version you target, the language for specs.
+It saves the answers, checks your machine, and offers to start your first add-on — which does
+steps 1–2 below for you.
 
 **1. Pick the add-on type.** [`docs/plugin-types.md`](docs/plugin-types.md) has the decision
 table. Unsure? Ask your agent — it reads that file.

@@ -1,6 +1,6 @@
 ---
 mode: agent
-description: First-run setup for SDK Composer — short interview, saved settings (.composer/settings.json), machine check, hand-off to the first add-on.
+description: First-run setup for SDK Composer — introduces Composer, asks a few questions one at a time, saves .composer/settings.json, checks the machine, hands off to the first add-on.
 ---
 
 The procedure is defined once, for every agent. Read

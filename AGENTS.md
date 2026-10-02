@@ -7,9 +7,10 @@ pointers — `CLAUDE.md`, `.github/copilot-instructions.md`). **Change rules her
 
 ## First run: no settings, onboarding first
 
-**If `.composer/settings.json` does not exist, offer onboarding before doing anything else** —
-whatever the user asked ("what next?", "co dalej?", or a real task). It is a short interview
-that saves how they work and where their add-ons go. If they decline, work in local mode and do
+**If `.composer/settings.json` does not exist, start with onboarding before doing anything
+else** — whatever the user asked ("what next?", "co dalej?", or a real task). Onboarding first
+introduces Composer (what it is, how the work goes), then asks a few questions one at a time
+and saves how they work and where their add-ons go — never a wall of questions at once. If they decline, work in local mode and do
 not ask again in this conversation. If the file exists and they ask what next, summarise it and
 offer to re-run onboarding.
 
