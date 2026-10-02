@@ -1,0 +1,36 @@
+###############################################################################
+# Line ending normalization
+#
+# Baseline: normalize all text files to LF in the repository (the form git
+# stores and diffs/CI operate on), leaving checkout line endings to each
+# developer's core.autocrlf config (true on Windows -> CRLF working copy,
+# input on Mac/Linux -> LF working copy). This avoids forcing eol=lf and
+# rewriting every file on checkout for the Windows majority. Placed first so
+# the more specific LFS/binary rules below correctly override it (git
+# attributes: last matching pattern wins per attribute).
+###############################################################################
+* text=auto
+
+# Native Windows scripts/tooling must stay CRLF regardless of platform.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# POSIX scripts run in Linux containers/CI; bash chokes on CRLF.
+*.sh text eol=lf
+
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Spec Kit CLI-managed files. The CLI records a sha256 of the bytes it writes
+# (LF) in .specify/integrations/*.manifest.json and compares on every
+# `specify integration status/upgrade`. A CRLF working copy makes every managed
+# file look locally modified, which blocks upgrades. Keep them LF everywhere.
+# Placed after the *.ps1 rule above so it wins for .specify's own scripts;
+# PowerShell runs LF scripts fine.
+.specify/** text eol=lf
+.agents/skills/** text eol=lf
+.github/prompts/** text eol=lf
+.github/agents/** text eol=lf
+.claude/skills/** text eol=lf
+.vscode/settings.json text eol=lf

@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    WEBCON BPS SDK add-on (starter).
+    Target framework MUST be netstandard2.0 so the assembly loads in BOTH runtimes:
+      - BPS Service  = .NET Framework 4.7.2
+      - BPS Portal   = .NET 8
+    See the project constitution (.specify/memory/constitution.md), Principle II & V.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Webcon.Addon.Template</RootNamespace>
+    <AssemblyName>Webcon.Addon.Template</AssemblyName>
+
+    <!-- Strong name: temporary_key.snk for local work; use YOUR OWN key for distribution. -->
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>temporary_key.snk</AssemblyOriginatorKeyFile>
+
+    <!-- AssemblyVersion lives in Properties/AssemblyInfo.cs; SDK Tools "Publish" bumps it. -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Plugin manifest: SDK Tools "Publish" reads this from the BUILD OUTPUT folder
+      (bin\<Config>\netstandard2.0\<AssemblyName>.json), so it MUST be copied there.
+    -->
+    <None Update="Webcon.Addon.Template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      WEBCON BPS 2026 SDK libraries (base classes: CustomAction<T>, PluginConfiguration, ...).
+      MATCH this version to YOUR environment:
+        - master         -> newest
+        - bps-on-demand  -> the release of your specific instance
+      A mismatch surfaces at "Verify plugins" in Designer Studio.
+      Runtime assets are excluded: the BPS host provides the SDK at runtime.
+    -->
+    <PackageReference Include="WEBCON.BPS.2026.SDK.Libraries" Version="26.1.1.26">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    SAMPLE add-on — the output of specs/002-external-service-call.
+    Demonstrates calling an external web service from a Custom Action.
+    Same conventions as /src: netstandard2.0, strong-named, WEBCON BPS 2026 SDK.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Webcon.Example.ExternalService</RootNamespace>
+    <AssemblyName>Webcon.Example.ExternalService</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>temporary_key.snk</AssemblyOriginatorKeyFile>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Plugin manifest: SDK Tools "Publish" reads this from the BUILD OUTPUT folder
+      (bin\<Config>\netstandard2.0\<AssemblyName>.json), so it MUST be copied there.
+    -->
+    <None Update="Webcon.Example.ExternalService.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WEBCON.BPS.2026.SDK.Libraries" Version="26.1.1.26">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

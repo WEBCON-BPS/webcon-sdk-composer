@@ -1,0 +1,19 @@
+﻿{
+    "extensions": [
+        {
+            "Guid": "7d586492-7efa-434e-88c5-a2a87aab00ee",
+            "Name": "Call external service",
+            "Description": "Sends an HTTP GET to a configured URL and returns the result.",
+            "Assembly": "Webcon.Example.ExternalService",
+            "Class": "Webcon.Example.ExternalService.CustomActions.CallService.CallServiceAction",
+            "Type": "CustomAction"
+        }
+    ],
+    "dependencies": [
+        
+    ],
+    "serviceDependenciesPaths": [
+        
+    ],
+    "version": "26"
+}

@@ -1,0 +1,19 @@
+﻿{
+    "extensions": [
+        {
+            "Guid": "02631602-51b1-48d2-8cae-e3b651ed92a3",
+            "Name": "Hello World",
+            "Description": "Minimal sample Custom Action (returns a greeting to the user).",
+            "Assembly": "Webcon.Addon.Template",
+            "Class": "Webcon.Addon.Template.CustomActions.HelloWorld.HelloWorldAction",
+            "Type": "CustomAction"
+        }
+    ],
+    "dependencies": [
+        
+    ],
+    "serviceDependenciesPaths": [
+        
+    ],
+    "version": "26"
+}
