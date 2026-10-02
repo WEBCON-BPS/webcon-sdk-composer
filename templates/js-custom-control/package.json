@@ -1,0 +1,35 @@
+{
+  "name": "addon-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WEBCON BPS JS custom control - starter template.",
+  "scripts": {
+    "build": "npx gulp",
+    "check": "npx gulp check",
+    "lint": "npx gulp lint",
+    "format": "npx gulp format",
+    "postinstall": "npm run-script build",
+    "watch": "npx gulp watch",
+    "start": "npx js-custom-control-workbench",
+    "publish-sdk": "npx publish-sdk",
+    "package": "npm run build && npm run publish-sdk"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0"
+  },
+  "devDependencies": {
+    "@webcon/js-custom-control-build": "^2.0.2",
+    "@webcon/js-custom-control-workbench": "^2.0.2",
+    "@webcon/publish-sdk": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-react": "^7.37.5",
+    "gulp": "^4.0.2"
+  }
+}
