@@ -1,7 +1,7 @@
 {
   "packageName": "AddonTemplate",
   "solutionId": "00000000-0000-0000-0000-000000000000",
-  "description": "WEBCON BPS JS custom control — starter template.",
+  "description": "WEBCON JS custom control — starter template.",
   "files": {
     "component": "./src/CustomControlComponent.js",
     "emptyValueValidator": "./src/EmptyValueValidator.js",

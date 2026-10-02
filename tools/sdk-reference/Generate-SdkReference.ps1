@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS
-    Generates the WEBCON BPS SDK API context reference (docs/sdk-reference/) from the SDK
+    Generates the WEBCON SDK API context reference (docs/sdk-reference/) from the SDK
     package's own XML documentation file.
 
 .DESCRIPTION
@@ -19,7 +19,7 @@
       * WebCon.WorkFlow.SDK.xml — member names, method parameter types, summaries. Drives the
         member list; a member absent from the XML is absent from the reference.
       * WebCon.WorkFlow.SDK.dll — read as METADATA ONLY through MetadataLoadContext, which
-        never executes the assembly and never needs the BPS host assemblies
+        never executes the assembly and never needs the WEBCON host assemblies
         (WebCon.WorkFlow.BPS.Abstract & co.) that a plain Assembly.LoadFrom demands. Supplies
         the three things the XML cannot carry: property/field/return TYPES, the INHERITANCE
         chain (XML doc ids are per declaring type, so inherited members are invisible to it),

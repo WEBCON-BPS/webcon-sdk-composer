@@ -7,8 +7,8 @@ explains the rule.
 
 | Component | Runtime |
 |---|---|
-| **BPS Service** (workflow engine, where actions run) | **.NET Framework 4.7.2** |
-| **BPS Portal** (web) | **.NET 9** |
+| **WEBCON Service** (workflow engine, where actions run) | **.NET Framework 4.7.2** |
+| **WEBCON Portal** (web) | **.NET 9** |
 
 By default your plugin assembly targets **`netstandard2.0`** precisely so the one DLL can load
 in **both** runtimes. This is required for any plugin that runs in the **Service** (e.g. a Custom
@@ -27,7 +27,7 @@ Action) — a `net9.0` build would not load in .NET Framework 4.7.2.
 | code that runs in the **Portal** | **portal** dependencies | Must match .NET 9. |
 
 > Exact manifest node names vary slightly by SDK version (e.g. `serviceDependencies` /
-> `serviceDependenciesPaths`). **WEBCON BPS SDK Tools is the source of truth** and keeps the
+> `serviceDependenciesPaths`). **WEBCON SDK Tools is the source of truth** and keeps the
 > manifest in sync — let it manage placement; the rule above is what stays constant.
 
 ## Example: adding an external library

@@ -114,7 +114,7 @@ def frame(step, alpha, loop_alpha=0.0):
     d = ImageDraw.Draw(img)
 
     d.text((s(M), s(38)), "WEBCON SDK Composer", font=TITLE, fill=TEXT)
-    d.text((s(M), s(82)), "From a sentence to a registered WEBCON BPS add-on — spec-first, with your AI agent",
+    d.text((s(M), s(82)), "From a sentence to a registered WEBCON add-on — spec-first, with your AI agent",
            font=CAP, fill=MUTED)
 
     lanes = [("You + your agent", NY - 30, BLUE), ("Process administrator", ADMIN_Y - 30, AMBER)]

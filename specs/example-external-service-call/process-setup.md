@@ -9,10 +9,10 @@ package lands* needs the built `.zip`, so the two halves of the work run in para
 
 | What | Detail |
 |---|---|
-| Environment | WEBCON BPS 2026, Designer Studio access |
+| Environment | WEBCON 2026, Designer Studio access |
 | Licence | a valid **SDK licence** — without it the package will not register |
 | Rights | someone who may add a plugin package (**Plugin packages → New package**) |
-| Network | the **BPS Service** host must reach the service URL outbound — the action runs in the Service, not in your browser, so a URL that works on your machine proves nothing |
+| Network | the **WEBCON Service** host must reach the service URL outbound — the action runs in the Service, not in your browser, so a URL that works on your machine proves nothing |
 | Credentials | none for this example (anonymous HTTP GET). A real integration: obtain the token or key now, do not enter it anywhere yet — see §5 |
 
 ## 2. Prepare now (no package needed)
@@ -61,7 +61,7 @@ the plugin's source.
 2. Expect a message with the **HTTP status** and the first ~200 characters of the response.
 3. Point the configuration at an unreachable URL and repeat: expect a clear failure message
    (`HasErrors` is set, so the path reports the failure rather than passing silently).
-4. When it fails silently, look in the **instance history** and the **BPS Service log** — the
+4. When it fails silently, look in the **instance history** and the **WEBCON Service log** — the
    action logs an info line on every call.
 
 ## Checklist

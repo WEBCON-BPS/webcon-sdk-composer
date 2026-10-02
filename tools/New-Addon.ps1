@@ -133,7 +133,7 @@ $manifestPath = Join-Path $target "$assembly.json"
     dependencies             = @()
     serviceDependenciesPaths = @()
     # Studio on the main branch only accepts the literal "Main"; Build-Addon.ps1 leaves it alone.
-    version                  = if ((Get-ComposerSettings).bpsVersion -eq 'Main') { 'Main' } else { '26' }
+    version                  = if ((Get-ComposerSettings).webconVersion -eq 'Main') { 'Main' } else { '26' }
 } | ConvertTo-Json -Depth 10 | Set-Content $manifestPath
 
 $assemblyInfo = Join-Path $target 'Properties/AssemblyInfo.cs'

@@ -24,7 +24,7 @@ restore, Publish again, and re-register.
 The **"BPS 2026 Extensions"** VS extension isn't installed (it provides SDK Tools). Install it
 from the VS Marketplace and match its version to your environment.
 
-## A library loads locally but fails at runtime in BPS
+## A library loads locally but fails at runtime in WEBCON
 
 Wrong dependency placement. A Custom Action runs in the **Service (.NET Framework 4.7.2)**.
 Put `.NET Standard 2.0` libraries in `dependencies`; split runtime-specific libraries into

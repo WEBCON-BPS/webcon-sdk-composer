@@ -23,13 +23,13 @@
 .EXAMPLE
     ./tools/Initialize-Composer.ps1 -Workspace C:/GIT/my-addons -CreateWorkspace
     ./tools/Initialize-Composer.ps1 -Workspace ''
-    ./tools/Initialize-Composer.ps1 -BpsVersion Main -SpecLanguage pl
+    ./tools/Initialize-Composer.ps1 -WebconVersion Main -SpecLanguage pl
 #>
 [CmdletBinding()]
 param(
     [string]$Workspace,
     [ValidateSet('claude', 'codex', 'copilot')][string]$Agent,
-    [string]$BpsVersion,
+    [string]$WebconVersion,
     [string]$SpecLanguage,
     [switch]$CreateWorkspace
 )
@@ -51,7 +51,7 @@ function Pick($name, $default) {
 $settings = [ordered]@{
     workspace    = Pick 'Workspace' $null
     agent        = Pick 'Agent' 'claude'
-    bpsVersion   = Pick 'BpsVersion' '2026'
+    webconVersion   = Pick 'WebconVersion' '2026'
     specLanguage = Pick 'SpecLanguage' 'en'
 }
 if ([string]::IsNullOrWhiteSpace($settings.workspace)) { $settings.workspace = $null }
@@ -113,6 +113,6 @@ Report 'Node.js 18+' ($node -and [int]($node.TrimStart('v').Split('.')[0]) -ge 1
 $mode = if ($settings.workspace) { "workspace  $($settings.workspace)" } else { "local      $clone" }
 Write-Host ''
 Write-Host "Mode:      $mode" -ForegroundColor Cyan
-Write-Host "Agent:     $($settings.agent)   BPS: $($settings.bpsVersion)   Spec language: $($settings.specLanguage)"
+Write-Host "Agent:     $($settings.agent)   WEBCON: $($settings.webconVersion)   Spec language: $($settings.specLanguage)"
 Write-Host "Settings:  $settingsPath"
 Write-Host "Change:    edit that file, or re-run ./tools/Initialize-Composer.ps1 with the values to change (-Workspace '' = local mode)."

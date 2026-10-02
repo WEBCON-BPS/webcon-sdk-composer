@@ -1,6 +1,6 @@
 ---
 name: "webcon-new-addon"
-description: "Start a new WEBCON BPS SDK add-on: work out which add-on type the user actually needs, scaffold it with tools/New-Addon.ps1, and hand off to the Spec-Kit loop. Use whenever someone wants to build a new plugin, control, action, rule, data source or form-field customization for WEBCON BPS, or asks 'what type of add-on do I need'."
+description: "Start a new WEBCON SDK add-on: work out which add-on type the user actually needs, scaffold it with tools/New-Addon.ps1, and hand off to the Spec-Kit loop. Use whenever someone wants to build a new plugin, control, action, rule, data source or form-field customization for WEBCON, or asks 'what type of add-on do I need'."
 argument-hint: "Describe what you want the add-on to do"
 user-invocable: true
 disable-model-invocation: false

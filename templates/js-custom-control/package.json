@@ -2,7 +2,7 @@
   "name": "addon-template",
   "version": "1.0.0",
   "private": true,
-  "description": "WEBCON BPS JS custom control - starter template.",
+  "description": "WEBCON JS custom control - starter template.",
   "scripts": {
     "build": "npx gulp",
     "check": "npx gulp check",

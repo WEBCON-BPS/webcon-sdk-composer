@@ -74,7 +74,7 @@ if ($csproj) {
         }
     }
 
-    # The manifest's "version" is the BPS line, taken from the SDK NuGet major version so it
+    # The manifest's "version" is the WEBCON version, taken from the SDK NuGet major version so it
     # cannot drift when someone upgrades the package reference. SDK Tools does the same, and
     # leaves the literal "Main" alone.
     $manifestJson = Get-Content $manifest -Raw | ConvertFrom-Json
@@ -117,7 +117,7 @@ if ($csproj) {
         ForEach-Object { Copy-Item $_.FullName $staging; Write-Step "Including UI package $($_.Name)" }
 
     # Only ship the libraries the manifest declares — anything else would load against
-    # the wrong runtime or shadow an assembly BPS already provides (Principle IV).
+    # the wrong runtime or shadow an assembly WEBCON already provides (Principle IV).
     foreach ($dep in $manifestJson.dependencies) {
         $depDll = Join-Path $binDir "$($dep -replace '\.dll$').dll"
         if (Test-Path $depDll) { Copy-Item $depDll $staging }

@@ -1,6 +1,6 @@
 # WEBCON SDK Composer
 
-Build a **WEBCON BPS SDK add-on** by describing what you want, in your own words, to an AI
+Build a **WEBCON SDK add-on** by describing what you want, in your own words, to an AI
 coding agent — and get back a package you can register in Designer Studio.
 
 Writing an SDK add-on has never been hard. It has been *tedious*: set up the project, find
@@ -55,7 +55,7 @@ You and the agent go through the eight steps. Whoever administers the WEBCON pro
 
 **You need:** an AI coding agent (Claude Code, GitHub Copilot or Codex), the
 [.NET SDK](https://dotnet.microsoft.com/download) for .NET add-ons, [Node.js](https://nodejs.org)
-18+ for JS controls, and a WEBCON BPS environment **with an SDK license** to actually run
+18+ for JS controls, and a WEBCON environment **with an SDK license** to actually run
 what you build.
 
 ```bash
@@ -65,7 +65,7 @@ cd webcon-sdk-composer
 
 **0. Ask your agent "what next?"** On a fresh clone it introduces itself and Composer, then asks a
 few questions one at a time: whether your add-ons stay in this repository or go to
-[your own workspace](#your-own-workspace), the BPS version you target, the language for specs.
+[your own workspace](#your-own-workspace), the WEBCON version you target, the language for specs.
 It saves the answers, checks your machine, and offers to start your first add-on — which does
 steps 1–2 below for you.
 

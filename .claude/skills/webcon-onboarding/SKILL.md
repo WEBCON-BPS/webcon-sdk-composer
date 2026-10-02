@@ -1,6 +1,6 @@
 ---
 name: "webcon-onboarding"
-description: "First-run setup for SDK Composer: introduce what Composer is and how to work with it, then a short guided interview (local or own workspace, BPS version, spec language), saved to .composer/settings.json, a machine check, and a hand-off to the first add-on. Use when .composer/settings.json does not exist, when someone has just cloned the repo and asks 'what next', 'co dalej', 'how do I start', or when they want to change where their add-ons go."
+description: "First-run setup for SDK Composer: introduce what Composer is and how to work with it, then a short guided interview (local or own workspace, WEBCON version, spec language), saved to .composer/settings.json, a machine check, and a hand-off to the first add-on. Use when .composer/settings.json does not exist, when someone has just cloned the repo and asks 'what next', 'co dalej', 'how do I start', or when they want to change where their add-ons go."
 argument-hint: "Optional: what you want to build first"
 user-invocable: true
 disable-model-invocation: false
@@ -26,7 +26,7 @@ in, not a conversation.
 ## 0. Already set up?
 
 If `.composer/settings.json` exists, skip the introduction and the interview. Show its values in
-one short block (mode and path, agent, BPS version, spec language), say what the next step is
+one short block (mode and path, agent, WEBCON version, spec language), say what the next step is
 (usually: describe the add-on → `webcon-new-addon`), and offer to change any value. A change is
 one `Initialize-Composer.ps1` call with just that parameter.
 
@@ -34,7 +34,7 @@ one `Initialize-Composer.ps1` call with just that parameter.
 
 One message, before any question. Keep it to about this length and cover these four points:
 
-1. **What it is** — "SDK Composer helps you build WEBCON BPS SDK add-ons (custom actions,
+1. **What it is** — "SDK Composer helps you build WEBCON SDK add-ons (custom actions,
    business rules, data sources, form controls…) with me, your AI agent."
 2. **How the work goes** — you describe in your own words what the add-on should do → I write a
    specification (`spec.md`) that **you read and correct** → I plan it, implement it against the
@@ -73,9 +73,9 @@ The questions, in order (the default is listed first):
      untouched when Composer is updated; Composer never commits there.
 2. **What is the path?** *(only if they chose their own directory)* — for a repository, the path
    of its local clone. → `-Workspace <path>`
-3. **Which WEBCON BPS version do you target?** — *2026* or *Main* (Studio from the main branch).
+3. **Which WEBCON version do you target?** — *2026* or *Main* (Studio from the main branch).
    It decides the SDK version and the manifest, so the package passes Verify plugins.
-   → `-BpsVersion`
+   → `-WebconVersion`
 4. **In which language should I write the specifications?** — *English*, or the user's own
    language if that is not English. The spec is the document they will read and correct most.
    → `-SpecLanguage <tag>`
@@ -94,7 +94,7 @@ Path handling (question 2):
 Summarise the answers in two or three lines and run:
 
 ```powershell
-./tools/Initialize-Composer.ps1 -Agent <claude|codex|copilot> -Workspace '<path or empty>' -BpsVersion <v> -SpecLanguage <tag> [-CreateWorkspace]
+./tools/Initialize-Composer.ps1 -Agent <claude|codex|copilot> -Workspace '<path or empty>' -WebconVersion <v> -SpecLanguage <tag> [-CreateWorkspace]
 ```
 
 It prepares the workspace (`specs/`, `addons/`, `.gitignore`, a minimal `.specify/`), writes

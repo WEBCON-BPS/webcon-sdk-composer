@@ -1,6 +1,11 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version: 2.2.1 (PATCH — terminology: the product is "WEBCON", not "WEBCON BPS"; identifiers such as
+the WEBCON.BPS.* NuGet packages and the WEBCON-BPS GitHub organisation are unchanged)
+
+Previous version
+----------------
 Version: 2.2.0 (MINOR — the user's work can live in a workspace outside this clone; first run is
 an onboarding interview)
 
@@ -35,7 +40,7 @@ WEBCON SDK Composer workshop repository)
 
 What changed:
   1. Audience and scope: a public, MIT-licensed repository anyone can clone to build their
-     own WEBCON BPS SDK add-ons — no longer an internal, time-boxed hackathon template.
+     own WEBCON SDK add-ons — no longer an internal, time-boxed hackathon template.
   2. Work location: add-ons live in `addons/<Name>/`, scaffolded by `tools/New-Addon.ps1`.
      `templates/` and `examples/` are read-only references. (Replaces participant-addons/.)
   3. Packaging (Principle III) now recognises TWO equivalent producers of the package:
@@ -61,7 +66,7 @@ Deferred TODOs: none.
 
 # WEBCON SDK Composer Constitution
 
-This repository lets anyone build a WEBCON BPS SDK add-on with an AI coding agent, working
+This repository lets anyone build a WEBCON SDK add-on with an AI coding agent, working
 spec-first. These principles bind any agent or human generating, modifying or reviewing
 artifacts here.
 
@@ -82,7 +87,7 @@ The specification is the source of truth; code is derived from it.
 
 ### II. SDK Contract Fidelity
 
-An add-on conforms to the WEBCON BPS SDK contract exactly.
+An add-on conforms to the WEBCON SDK contract exactly.
 
 - **Look signatures up; do not recall them.** The generated API reference in
   `docs/sdk-reference/` is pinned to the SDK NuGet version in `templates/dotnet-plugin`.
@@ -108,7 +113,7 @@ The path from source to a registrable package is fixed.
 - A package is a `.zip` holding the manifest JSON plus the `.dll` (.NET) and/or the
   `.bpspkg` (front end), and any declared dependency libraries.
 - It MUST be produced by one of two equivalent chains: **`tools/Build-Addon.ps1`** (no Visual
-  Studio required) or **WEBCON BPS SDK Tools -> Publish**. Zipping build output by hand is not
+  Studio required) or **WEBCON SDK Tools -> Publish**. Zipping build output by hand is not
   a third option.
 - **`AssemblyVersion` MUST advance for every package handed out.** Designer Studio identifies
   and upgrades packages by that version. SDK Tools bumps it; `Build-Addon.ps1 -Version` stamps
@@ -130,7 +135,7 @@ Dependency placement follows the runtime split. This is the most common integrat
 
 ### V. Environment Version Matching
 
-- The repository baseline is **WEBCON BPS 2026**.
+- The repository baseline is **WEBCON 2026**.
 - The SDK NuGet version MUST match the target environment: newest for `master`, the release
   of that specific instance for an on-demand environment.
 - A mismatch surfaces at **Verify plugins** in Designer Studio. Documentation MUST say so,
@@ -148,7 +153,7 @@ Dependency placement follows the runtime split. This is the most common integrat
 - The repository MUST stay agent-agnostic: **Claude Code**, **GitHub Copilot** and **Codex**
   are all first-class. Rules live once, in `AGENTS.md`; `CLAUDE.md` and
   `.github/copilot-instructions.md` are pointers and MUST NOT carry rules of their own.
-- Documentation MUST be honest about what needs a licensed BPS environment and what does not.
+- Documentation MUST be honest about what needs a licensed WEBCON environment and what does not.
 - **Rationale**: friction in the first fifteen minutes is the difference between a working
   add-on and an abandoned clone.
 
@@ -159,7 +164,7 @@ Dependency placement follows the runtime split. This is the most common integrat
 - **JS custom control**: React 16 with `@webcon/js-custom-control-build`,
   `@webcon/js-custom-control-workbench` and `@webcon/publish-sdk` (public on npm).
 - **Prerequisites**: an AI coding agent; .NET SDK for .NET add-ons; Node.js 18+ for JS
-  controls; a WEBCON BPS environment with an SDK license to register and run the result.
+  controls; a WEBCON environment with an SDK license to register and run the result.
   Visual Studio with the BPS Extensions is optional — convenient, not required.
 - **Workspace**: the user's work (`addons/`, `specs/`) lives in the workspace named in the
   per-user, git-ignored `.composer/settings.json`, or in this clone when none is set (local
@@ -197,4 +202,4 @@ principle, MINOR for a new principle or materially expanded guidance, PATCH for
 clarifications. Plans MUST pass the Constitution Check gate; a justified deviation belongs
 in the plan Complexity Tracking section, not in silence.
 
-**Version**: 2.2.0 | **Ratified**: 2026-08-31 | **Last amended**: 2026-10-02
+**Version**: 2.2.1 | **Ratified**: 2026-08-31 | **Last amended**: 2026-10-02

@@ -22,9 +22,9 @@ npm install
 npm start          # workbench on http://localhost:3000
 ```
 
-`npm start` opens the **JS Custom Control Workbench** — your control rendered outside BPS,
+`npm start` opens the **JS Custom Control Workbench** — your control rendered outside WEBCON,
 with a panel where you set `model`, `sdkConfiguration` and `fieldConfiguration` by hand and
-watch every `onChange` it emits. Use it. Iterating against a real BPS form is minutes per
+watch every `onChange` it emits. Use it. Iterating against a real WEBCON form is minutes per
 cycle; the workbench is seconds.
 
 ## The component contract
@@ -49,7 +49,7 @@ Three files make up the control, all listed in `src/manifest.json`:
 | `AdditionalValidator.js` | `() => ({ isValid, message })` — blocks save with a message |
 
 `src/manifest.json` also carries `packageName` and `solutionId` (a GUID). **`solutionId` must
-be stable and unique** — it is how BPS identifies the control across upgrades. `New-Addon.ps1`
+be stable and unique** — it is how WEBCON identifies the control across upgrades. `New-Addon.ps1`
 generates one; never copy another control's.
 
 ## Packaging

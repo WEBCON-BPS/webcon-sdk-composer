@@ -67,7 +67,7 @@ config pattern documented here. Three projects, by difficulty:
 
 > **How to use them:** read the matching example for the structure (base class, config class with
 > `ConfigEditable*` attributes, how `Context`/helpers are called), then write your own add-on under
-> `addons/<Name>/`. These examples target an older BPS baseline, so
+> `addons/<Name>/`. These examples target an older WEBCON baseline, so
 > **API names and the SDK version may differ from `26.1.1.26`** — when in doubt, the signatures in
 > this [SDK reference](README.md) are authoritative for the pinned version, and a version mismatch
 > surfaces at **Verify plugins** (constitution Principle V).

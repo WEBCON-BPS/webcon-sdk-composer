@@ -1,11 +1,11 @@
 ---
 mode: agent
-description: Start a new WEBCON BPS SDK add-on — pick the right add-on type, scaffold it, hand off to Spec-Kit.
+description: Start a new WEBCON SDK add-on — pick the right add-on type, scaffold it, hand off to Spec-Kit.
 ---
 
 > `specs/` and `addons/` below are relative to the workspace — see *Where your work goes* in `AGENTS.md`.
 
-You are starting a new WEBCON BPS SDK add-on. Follow `AGENTS.md` at the repository root.
+You are starting a new WEBCON SDK add-on. Follow `AGENTS.md` at the repository root.
 
 ## 1. Pick the type
 

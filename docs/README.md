@@ -1,6 +1,6 @@
 # Documentation
 
-Everything an agent (or a person) needs to write a correct WEBCON BPS SDK add-on without
+Everything an agent (or a person) needs to write a correct WEBCON SDK add-on without
 guessing. Start with the first row.
 
 | Page | Read it when |
