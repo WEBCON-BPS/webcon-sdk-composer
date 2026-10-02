@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <!--
-    WEBCON BPS SDK add-on (starter).
+    WEBCON SDK add-on (starter).
     Target framework MUST be netstandard2.0 so the assembly loads in BOTH runtimes:
-      - BPS Service  = .NET Framework 4.7.2
-      - BPS Portal   = .NET 8
+      - WEBCON Service = .NET Framework 4.7.2
+      - WEBCON Portal  = .NET 8
     See the project constitution (.specify/memory/constitution.md), Principle II & V.
   -->
 
@@ -34,12 +34,12 @@
 
   <ItemGroup>
     <!--
-      WEBCON BPS 2026 SDK libraries (base classes: CustomAction<T>, PluginConfiguration, ...).
+      WEBCON 2026 SDK libraries (base classes: CustomAction<T>, PluginConfiguration, ...).
       MATCH this version to YOUR environment:
         - master         -> newest
         - bps-on-demand  -> the release of your specific instance
       A mismatch surfaces at "Verify plugins" in Designer Studio.
-      Runtime assets are excluded: the BPS host provides the SDK at runtime.
+      Runtime assets are excluded: the WEBCON host provides the SDK at runtime.
     -->
     <PackageReference Include="WEBCON.BPS.2026.SDK.Libraries" Version="26.1.1.26">
       <ExcludeAssets>runtime</ExcludeAssets>

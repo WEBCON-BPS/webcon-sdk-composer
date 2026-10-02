@@ -1,6 +1,6 @@
 # WEBCON SDK Composer
 
-Build a **WEBCON BPS SDK add-on** by describing what you want, in your own words, to an AI
+Build a **WEBCON SDK add-on** by describing what you want, in your own words, to an AI
 coding agent — and get back a package you can register in Designer Studio.
 
 Writing an SDK add-on has never been hard. It has been *tedious*: set up the project, find
@@ -14,13 +14,48 @@ signatures instead of recalling them; Spec-Kit turns your sentence into a spec y
 and correct before any code exists; and one script turns the result into a package you can
 import — no Visual Studio required.
 
+## How it works
+
+![How SDK Composer works: onboarding, scaffold, specify, plan, tasks, implement, build, register — with the process administrator preparing the process in parallel](docs/images/how-it-works.gif)
+
+<details>
+<summary>The same flow as a diagram</summary>
+
+```mermaid
+flowchart TD
+    A["<b>Onboarding</b><br/>ask your agent “what next?”<br/>local or own workspace"] --> B
+    B["<b>Pick &amp; scaffold</b><br/>right add-on type · New-Addon.ps1"] --> C
+    C["<b>Specify</b> · /speckit.specify<br/>spec.md — you read and correct it"] --> D
+    D["<b>Plan</b> · /speckit.plan<br/>plan.md + process-setup.md"] --> E
+    E["<b>Tasks</b> · /speckit.tasks → /speckit.analyze"] --> F
+    F["<b>Implement</b> · /speckit.implement<br/>against the SDK reference in docs/"] --> G
+    G["<b>Build</b> · Build-Addon.ps1<br/>→ importable .zip"] --> H
+    H["<b>Register</b> in Designer Studio<br/>import · Verify plugins · run"]
+
+    D -. "in parallel" .-> P["<b>Process administrator</b><br/>prepares fields + types, constants,<br/>attach point, plugin configuration"]
+    P -.-> H
+    F -. "wrong result? fix the spec, not the code" .-> C
+
+    classDef you fill:#1e293b,stroke:#3b82f6,color:#e2e8f0
+    classDef admin fill:#2c2210,stroke:#f59e0b,color:#fde68a
+    classDef done fill:#1e293b,stroke:#f59e0b,color:#e2e8f0
+    class A,B,C,D,E,F,G you
+    class P admin
+    class H done
+```
+
+</details>
+
+You and the agent go through the eight steps. Whoever administers the WEBCON process works through
+`process-setup.md` at the same time, and the two halves meet at registration.
+
 ---
 
 ## Quickstart (about 15 minutes)
 
 **You need:** an AI coding agent (Claude Code, GitHub Copilot or Codex), the
 [.NET SDK](https://dotnet.microsoft.com/download) for .NET add-ons, [Node.js](https://nodejs.org)
-18+ for JS controls, and a WEBCON BPS environment **with an SDK license** to actually run
+18+ for JS controls, and a WEBCON environment **with an SDK license** to actually run
 what you build.
 
 ```bash
@@ -28,10 +63,11 @@ git clone https://github.com/WEBCON-BPS/webcon-sdk-composer.git
 cd webcon-sdk-composer
 ```
 
-**0. Ask your agent "what next?"** On a fresh clone it runs a short onboarding: which agent you
-use, whether your add-ons stay in this repository or go to [your own workspace](#your-own-workspace),
-the BPS version you target, the language for specs. It saves the answers, checks your machine,
-and offers to start your first add-on — which does steps 1–2 below for you.
+**0. Ask your agent "what next?"** On a fresh clone it introduces itself and Composer, then asks a
+few questions one at a time: whether your add-ons stay in this repository or go to
+[your own workspace](#your-own-workspace), the WEBCON version you target, the language for specs.
+It saves the answers, checks your machine, and offers to start your first add-on — which does
+steps 1–2 below for you.
 
 **1. Pick the add-on type.** [`docs/plugin-types.md`](docs/plugin-types.md) has the decision
 table. Unsure? Ask your agent — it reads that file.

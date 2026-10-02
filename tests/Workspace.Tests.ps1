@@ -38,7 +38,7 @@ try {
     Assert (-not (Test-Path $env:COMPOSER_SETTINGS)) '...and saves nothing'
 
     # ---------- US1: workspace mode ----------
-    & "$tools/Initialize-Composer.ps1" -Workspace $ws -CreateWorkspace -BpsVersion Main *> $null
+    & "$tools/Initialize-Composer.ps1" -Workspace $ws -CreateWorkspace -WebconVersion Main *> $null
     foreach ($p in 'specs', 'addons', '.gitignore', '.specify/init-options.json', '.specify/templates/spec-template.md') {
         Assert (Test-Path (Join-Path $ws $p)) "seeded $p"
     }
@@ -51,12 +51,12 @@ try {
     & "$tools/Initialize-Composer.ps1" *> $null
     Assert ((Get-Content (Join-Path $ws 'specs/001-x/spec.md')) -eq 'mine') 're-run keeps specs'
     Assert ((Get-Content (Join-Path $ws '.specify/feature.json') -Raw) -like '*001-x*') 're-run keeps feature.json'
-    Assert ((Get-Content $env:COMPOSER_SETTINGS -Raw | ConvertFrom-Json).bpsVersion -eq 'Main') 're-run keeps omitted values'
+    Assert ((Get-Content $env:COMPOSER_SETTINGS -Raw | ConvertFrom-Json).webconVersion -eq 'Main') 're-run keeps omitted values'
 
     & "$tools/New-Addon.ps1" -Name WsDemo -Type action *> $null
     $addon = Join-Path $ws 'addons/WsDemo'
     Assert (Test-Path (Join-Path $addon 'Webcon.Addon.WsDemo.csproj')) 'New-Addon scaffolds into the workspace'
-    Assert ((Get-Content (Join-Path $addon 'Webcon.Addon.WsDemo.json') -Raw | ConvertFrom-Json).version -eq 'Main') 'bpsVersion Main -> manifest "Main"'
+    Assert ((Get-Content (Join-Path $addon 'Webcon.Addon.WsDemo.json') -Raw | ConvertFrom-Json).version -eq 'Main') 'webconVersion Main -> manifest "Main"'
 
     $env:SPECIFY_INIT_DIR = $ws
     try { $paths = & "$clone/.specify/scripts/powershell/check-prerequisites.ps1" -Json -PathsOnly | ConvertFrom-Json }

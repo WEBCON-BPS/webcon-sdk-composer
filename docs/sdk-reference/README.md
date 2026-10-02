@@ -1,9 +1,9 @@
-# WEBCON BPS SDK — API Context Reference
+# WEBCON SDK — API Context Reference
 
 > **SDK**: WEBCON.BPS.2026.SDK.Libraries `26.1.1.26` · **Source**: `WebCon.WorkFlow.SDK.xml` + `.dll` (metadata)
 > **Regenerate**: `tools/sdk-reference/Generate-SdkReference.ps1` — see [Regeneration](#regeneration)
 
-Build the **next** WEBCON BPS SDK plugin without leaving the repo to search NuGet or decompile
+Build the **next** WEBCON SDK plugin without leaving the repo to search NuGet or decompile
 assemblies. This set is the curated, signature-first API surface a developer **or AI coding
 agent** needs: which base class to inherit, which method to override, the params/context object
 passed in, how configuration is declared, and where the helper you need lives.
@@ -17,7 +17,7 @@ name, member name, signature and enum value is read out of one of those two.
 
 The XML decides *what* is listed — member names, method parameter types, summaries. The `.dll` is
 read as **metadata only**, through `MetadataLoadContext`, which never executes it and never needs
-the BPS host assemblies (`WebCon.WorkFlow.BPS.Abstract` & co.) that a plain `Assembly.LoadFrom`
+the WEBCON host assemblies (`WebCon.WorkFlow.BPS.Abstract` & co.) that a plain `Assembly.LoadFrom`
 demands. It supplies the three things an XML doc file structurally cannot carry:
 
 - **property, field and return types** — the XML names members but not their types;

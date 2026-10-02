@@ -3,7 +3,7 @@
   <!--
     SAMPLE add-on — the output of specs/002-external-service-call.
     Demonstrates calling an external web service from a Custom Action.
-    Same conventions as /src: netstandard2.0, strong-named, WEBCON BPS 2026 SDK.
+    Same conventions as /src: netstandard2.0, strong-named, WEBCON 2026 SDK.
   -->
 
   <PropertyGroup>

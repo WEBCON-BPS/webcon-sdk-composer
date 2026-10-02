@@ -1,6 +1,6 @@
-# WEBCON BPS JS API — reference for Form Field Extensions
+# WEBCON JS API — reference for Form Field Extensions
 
-> **Source**: official *JS API documentation* (developer.webcon.com, BPS 2026) —
+> **Source**: official *JS API documentation* (developer.webcon.com, WEBCON 2026) —
 > <https://developer.webcon.com/2026/resources/JS%20API%20documentation.pdf>.
 > Hand-cleaned into markdown so agents in this repo can read it. If anything here looks off,
 > the upstream document is the source of truth.

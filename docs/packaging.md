@@ -72,7 +72,7 @@ The manifest lists one entry per plugin:
 }
 ```
 
-- **`Guid` must be stable per plugin** — it is the identity BPS upgrades against. Never reuse
+- **`Guid` must be stable per plugin** — it is the identity WEBCON upgrades against. Never reuse
   one from another add-on, and never regenerate it for an existing plugin.
 - **`Type`** is the base class name without its generic arity: `CustomAction`,
   `CustomBusinessRule`, `CustomDataSource`, `FormFieldExtension`, `CustomLabelPrint`,

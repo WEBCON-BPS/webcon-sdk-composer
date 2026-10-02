@@ -7,7 +7,7 @@ npm install
 npm start        # workbench on http://localhost:3000
 ```
 
-The workbench renders the control outside BPS with a panel for `model`, `sdkConfiguration`
+The workbench renders the control outside WEBCON with a panel for `model`, `sdkConfiguration`
 and `fieldConfiguration`, and logs every `onChange`. Iterate here, not against a real form.
 
 ```powershell

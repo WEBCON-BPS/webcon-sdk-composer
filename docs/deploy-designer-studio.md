@@ -1,7 +1,7 @@
 # Deploy in Designer Studio
 
 After you have a `.zip` in `/Publish` (see [packaging.md](packaging.md)),
-register it in your WEBCON BPS environment.
+register it in your WEBCON environment.
 
 ## Register the package
 

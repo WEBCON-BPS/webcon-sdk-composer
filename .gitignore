@@ -67,7 +67,7 @@ package/
 # Visual Studio
 .vs/
 
-# Per-user Composer settings (workspace, agent, BPS version) — written by tools/Initialize-Composer.ps1
+# Per-user Composer settings (workspace, agent, WEBCON version) — written by tools/Initialize-Composer.ps1
 .composer/
 
 # Spec-Kit machine-local caches and locks. Kept here, not in .specify/.gitignore: that file is

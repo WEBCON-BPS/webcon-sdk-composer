@@ -1,6 +1,6 @@
 # Building a WEBCON "External form field" front-end control
 
-A field guide for building a **custom rendered control** on a WEBCON BPS Modern form (charts,
+A field guide for building a **custom rendered control** on a WEBCON Modern form (charts,
 visualizations, custom widgets) using the **External form field** + the WEBCON **JS API**
 (`webcon.min.js`). Written from a real build (a Gantt chart) — every section below is a thing that
 actually bit us, with the fix. Intended for humans and coding agents.

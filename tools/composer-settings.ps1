@@ -1,7 +1,7 @@
 # Per-user Composer settings — dot-source this file: . "$PSScriptRoot/composer-settings.ps1"
 #
 # .composer/settings.json (git-ignored) says where the user's specs and add-ons live:
-#   { "workspace": "C:/GIT/my-addons", "agent": "claude", "bpsVersion": "2026", "specLanguage": "en" }
+#   { "workspace": "C:/GIT/my-addons", "agent": "claude", "webconVersion": "2026", "specLanguage": "en" }
 # No file, or an empty "workspace", means local mode: everything stays in this clone, as before.
 # Written by tools/Initialize-Composer.ps1; editing it by hand is fine.
 

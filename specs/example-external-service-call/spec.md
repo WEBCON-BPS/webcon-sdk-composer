@@ -6,7 +6,7 @@
 
 **Status**: Worked example (reference)
 
-**Input**: "A WEBCON BPS administrator wants a Custom Action that calls an external web service
+**Input**: "A WEBCON administrator wants a Custom Action that calls an external web service
 (HTTP GET to a configured URL) and reports the result back to the user — the canonical
 'integrate with an external API' starting point."
 
@@ -69,5 +69,5 @@ and confirm a clear failure message.
 
 - A GET with no auth is sufficient to demonstrate the pattern; real integrations add headers,
   payloads, and credential handling (out of scope for the teaching example).
-- The action runs in the BPS **Service** (.NET Framework 4.7.2); `HttpClient` from
+- The action runs in the WEBCON **Service** (.NET Framework 4.7.2); `HttpClient` from
   `.NET Standard 2.0` is used and reused (static instance) per best practice.

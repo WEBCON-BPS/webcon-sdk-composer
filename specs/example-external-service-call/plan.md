@@ -15,7 +15,7 @@ it builds and registers identically. Output lives in
 - **Primary Dependencies**: `WEBCON.BPS.2026.SDK.Libraries` (NuGet); `System.Net.Http`
   (in-box for netstandard2.0) — **no extra runtime dependency**, so no manifest dependency
   placement needed.
-- **Target Platform**: WEBCON BPS 2026; action runs in the Service (.NET Framework 4.7.2).
+- **Target Platform**: WEBCON 2026; action runs in the Service (.NET Framework 4.7.2).
 - **Constraints**: build + register unmodified; strong-named; follows the plugin contract in
   the constitution (`.specify/memory/constitution.md`).
 

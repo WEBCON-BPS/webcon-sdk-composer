@@ -1,15 +1,16 @@
 # Agent instructions
 
-This repository builds **WEBCON BPS SDK add-ons** with an AI agent, spec-first.
+This repository builds **WEBCON SDK add-ons** with an AI agent, spec-first.
 
 Claude Code, GitHub Copilot and Codex all read this file (the other two through thin
 pointers — `CLAUDE.md`, `.github/copilot-instructions.md`). **Change rules here, not there.**
 
 ## First run: no settings, onboarding first
 
-**If `.composer/settings.json` does not exist, offer onboarding before doing anything else** —
-whatever the user asked ("what next?", "co dalej?", or a real task). It is a short interview
-that saves how they work and where their add-ons go. If they decline, work in local mode and do
+**If `.composer/settings.json` does not exist, start with onboarding before doing anything
+else** — whatever the user asked ("what next?", "co dalej?", or a real task). Onboarding first
+introduces Composer (what it is, how the work goes), then asks a few questions one at a time
+and saves how they work and where their add-ons go — never a wall of questions at once. If they decline, work in local mode and do
 not ask again in this conversation. If the file exists and they ask what next, summarise it and
 offer to re-run onboarding.
 
@@ -23,7 +24,7 @@ All three lead to the same procedure in `.claude/skills/webcon-onboarding/SKILL.
 
 ## Where your work goes
 
-`.composer/settings.json` (git-ignored, one per clone) holds `workspace`, `agent`, `bpsVersion`
+`.composer/settings.json` (git-ignored, one per clone) holds `workspace`, `agent`, `webconVersion`
 and `specLanguage`. Read it at the start of any add-on work.
 
 - **No file, or `workspace` empty → local mode.** Everything below works exactly as written.
@@ -50,7 +51,7 @@ and `specLanguage`. Read it at the start of any add-on work.
 - If the workspace is missing or the file is malformed, stop and say so — never fall back to
   local mode silently. `./tools/Initialize-Composer.ps1` fixes either.
 - Write new specs in `specLanguage`; leave existing ones in theirs.
-- `bpsVersion` is the BPS line the user targets. `Main` means Studio on the main branch (manifest
+- `webconVersion` is the WEBCON version the user targets. `Main` means Studio on the main branch (manifest
   `"version": "Main"`, which `New-Addon.ps1` writes); it does not change the pinned SDK NuGet.
 
 ## The one rule that makes this work
@@ -121,8 +122,8 @@ prepare.
 **`/speckit.plan` MUST also write `specs/<n>-<slug>/process-setup.md`.** One page, addressed
 to a process administrator rather than a developer, split by what blocks whom:
 
-1. **Prerequisites** — BPS version, SDK license, who may register a package, network access
-   the BPS Service host needs, credentials to obtain.
+1. **Prerequisites** — WEBCON version, SDK license, who may register a package, network access
+   the WEBCON Service host needs, credentials to obtain.
 2. **Prepare now** — everything that needs no package yet: form fields (name, **type**, and
    whether the plugin reads or writes it), item lists and their columns, choice fields and the
    data sources behind them, global or application constants for endpoints, a test instance
@@ -166,7 +167,7 @@ first and the README is a copy edit.
 
 ## Hard constraints
 
-- **Target `netstandard2.0`.** The BPS Service runs .NET Framework 4.7.2 and the Portal runs
+- **Target `netstandard2.0`.** The WEBCON Service runs .NET Framework 4.7.2 and the Portal runs
   .NET 9; one `netstandard2.0` assembly loads in both. Only a Portal-only plugin may target
   `net9.0`, and the spec must say why.
 - **Assemblies are strong-named.** `temporary_key.snk` is fine locally; a real key is required

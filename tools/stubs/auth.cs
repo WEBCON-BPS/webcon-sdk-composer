@@ -6,7 +6,7 @@ using WebCon.WorkFlow.SDK.AutenticationPlugins.Model;
 namespace __NAMESPACE__
 {
     /// <summary>
-    /// Custom REST authentication — hands BPS an HttpClient that is already authenticated,
+    /// Custom REST authentication — hands WEBCON an HttpClient that is already authenticated,
     /// for APIs whose scheme WEBCON does not support out of the box.
     ///
     /// Do NOT hardcode secrets here: read them from the plugin configuration, which
