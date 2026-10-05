@@ -57,6 +57,25 @@ Executing SQL scripts
 - `Task<DataTable> GetDataTableForSqlCommandWithAdminPrivilegesAsync(String command)` *(method)* — Executing SQL query in BPS database context inside workflow transaction with admin privileges
 <!-- SDKREF:END Tools.Data.SqlExecutionHelper -->
 
+> **The block above shows one overload per name + parameter count.** Each
+> `*OutsideTransactionAsync` family actually has **four** overloads in the assembly, and
+> the difference matters — an `IDbCommand` can carry parameters, a `String` cannot, and a
+> *connection* is not a *data source*:
+>
+> ```csharp
+> // verified against WebCon.WorkFlow.SDK.dll 26.1.1.26 metadata
+> Task<Int32>     ExecSqlCommandNonQueryOutsideTransactionAsync(String     command, GetByConnectionParams args);
+> Task<Int32>     ExecSqlCommandNonQueryOutsideTransactionAsync(String     command, GetByDataSourceParams args);
+> Task<Int32>     ExecSqlCommandNonQueryOutsideTransactionAsync(IDbCommand command, GetByConnectionParams args);
+> Task<Int32>     ExecSqlCommandNonQueryOutsideTransactionAsync(IDbCommand command, GetByDataSourceParams args);
+> Task<Object>    ExecSqlCommandScalarOutsideTransactionAsync  (String     command, GetByConnectionParams args);   // + the same 4
+> Task<DataTable> GetDataTableForSqlCommandOutsideTransactionAsync(IDbCommand command, GetByConnectionParams args); // + the same 4
+> ```
+>
+> `SqlCommand` in these signatures is **`Microsoft.Data.SqlClient.SqlCommand`** — the SDK
+> package's only NuGet dependency, `Microsoft.Data.SqlClient`, with `runtime` excluded, so
+> the WEBCON host supplies it and it does **not** go into the manifest `dependencies`.
+
 <!-- SDKREF:BEGIN Tools.Data.DataSourcesHelper -->
 **`DataSourcesHelper`** — `WebCon.WorkFlow.SDK.Tools.Data`
 
@@ -79,6 +98,30 @@ Helper class for connections
 - `WebServiceConnection GetConnectionToWebService(GetByDataSourceParams args)` *(method)* — Method that extracts connection string from Web service data source.
 - `IWebProxy GetProxy(String url)` *(method)* — Method that extracts proxy connection from system for an url passed.
 <!-- SDKREF:END Tools.Data.ConnectionsHelper -->
+
+> Same overload caveat: `GetConnectionStringToDatabase` exists for **both**
+> `GetByConnectionParams` and `GetByDataSourceParams`.
+
+Both helpers above are addressed by an **id from the plugin configuration**: a
+`ConfigEditableConnectionID` picker yields the `ConnectionId` below, a
+`ConfigEditableDataSourceID` picker yields the `DataSourceId`.
+
+<!-- SDKREF:BEGIN Tools.Data.Model.GetByConnectionParams -->
+**`GetByConnectionParams`** — `WebCon.WorkFlow.SDK.Tools.Data.Model`
+
+Class with connections parameters
+
+- `Int32 ConnectionId` *(property)* — Connection ID
+<!-- SDKREF:END Tools.Data.Model.GetByConnectionParams -->
+
+<!-- SDKREF:BEGIN Tools.Data.Model.GetByDataSourceParams -->
+**`GetByDataSourceParams`** — `WebCon.WorkFlow.SDK.Tools.Data.Model`
+
+Class with data source parameters
+
+- `Nullable<Int32> CompanyId` *(property)* — Optional company ID.
+- `Int32 DataSourceId` *(property)* — Data source ID
+<!-- SDKREF:END Tools.Data.Model.GetByDataSourceParams -->
 
 ## Emails
 

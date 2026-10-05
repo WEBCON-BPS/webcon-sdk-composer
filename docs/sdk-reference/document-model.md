@@ -153,6 +153,53 @@ Inherited from `NewDocumentData`:
 - `Int32 WorkFlowID` *(property, inherited from NewDocumentData)* — Gets workflow id
 <!-- SDKREF:END Documents.Model.DocumentData -->
 
+The document you fill in before starting a new workflow (`GetNewDocumentAsync` returns one,
+`StartNewWorkFlowParams.DocumentToStart` takes it). Set values by field id with
+`SetFieldValueAsync`, or through the typed collections below.
+
+> The block below shows one overload per name + parameter count, so only one of the two
+> `GetFieldValue` readers appears. Both exist (verified against `WebCon.WorkFlow.SDK.dll`
+> 26.1.1.26 metadata):
+> `Object GetFieldValue(Int32 fieldID, EntityValueFormat format)` and
+> `Object GetFieldValue(String columName, EntityValueFormat format)` — same pair on
+> `ItemRowData.SetCellValueAsync`.
+
+<!-- SDKREF:BEGIN Documents.Model.NewDocumentData -->
+**`NewDocumentData`** — `WebCon.WorkFlow.SDK.Documents.Model`
+
+Class representing paremeters for new document
+
+- `Object GetFieldValue(Int32 fieldID, EntityValueFormat format)` *(method)* — Gets formatted value based on id
+- `Task SetFieldValueAsync(Int32 fieldID, Object value, CultureInfo culture)` *(method)* — Sets field value with specified culture
+- `AttachmentsCollection Attachments` *(property)* — Attachments collection
+- `ReadOnlyEntitiesCollection<AuthenticationField> AuthenticationFields` *(property)* — Gets collection of AuthenticationField form fields only
+- `ReadOnlyEntitiesCollection<BooleanField> BooleanFields` *(property)* — Gets collection of BooleanField form fields only
+- `ReadOnlyEntitiesCollection<ChooseField> ChooseFields` *(property)* — Gets collection of ChooseField form fields only
+- `CommentStorage Comment` *(property)* — Gets comments
+- `ReadOnlyEntitiesCollection<CommentField> CommentFields` *(property)* — Gets collection of CommentField form fields only
+- `Int32 CompanyID` *(property)* — Gets company id
+- `ReadOnlyEntitiesCollection<DateTimeField> DateTimeFields` *(property)* — Gets collection of DateTimeField form fields only
+- `ReadOnlyEntitiesCollection<DecimalField> DecimalFields` *(property)* — Gets collection of DecimalField form fields only
+- `Int32 DocumentTypeID` *(property)* — Gets document type id
+- `ReadOnlyCollection<TaskData> ExistingTasks` *(property)* — Gets existing tasks collection
+- `ReadOnlyEntitiesCollection<BaseField> Fields` *(property)* — Gets collection that contains all form fields
+- `ReadOnlyEntitiesCollection<HyperlinkField> HyperlinkFields` *(property)* — Gets collection of HyperlinkField form fields only
+- `ReadOnlyEntitiesCollection<IntegerField> IntegerFields` *(property)* — Gets collection of IntegerField form fields only
+- `ReadOnlyItemsCollection<ItemsList> ItemsLists` *(property)* — Gets list of items lists
+- `ReadOnlyEntitiesCollection<MapField> MapFields` *(property)* — Gets collection of MapField form fields only
+- `ReadOnlyEntitiesCollection<PeopleField> PeopleFields` *(property)* — Gets collection of PeopleField form fields only
+- `ReadOnlyEntitiesCollection<PickerField> PickerFields` *(property)* — Gets collection of PickerField form fields only
+- `Int32 ProcessID` *(property)* — Gets process id
+- `ReadOnlyEntitiesCollection<SqlField> SqlFields` *(property)* — Gets collection of SqlField form fields only
+- `Int32 StepID` *(property)* — Gets step id
+- `Nullable<Int32> SubDocumentTypeID` *(property)* — Gets subdocument type id
+- `ReadOnlyEntitiesCollection<SurveyChooseField> SurveyChooseFields` *(property)* — Gets collection of SurveyChooseField form fields only
+- `ReadOnlyEntitiesCollection<SurveyScaleField> SurveyScaleFields` *(property)* — Gets collection of SurveyScaleField form fields only
+- `ReadOnlyEntitiesCollection<TextField> TextFields` *(property)* — Gets collection of TextField form fields only
+- `ReadOnlyEntitiesCollection<TreeField> TreeFields` *(property)* — Gets collection of TreeField form fields only
+- `Int32 WorkFlowID` *(property)* — Gets workflow id
+<!-- SDKREF:END Documents.Model.NewDocumentData -->
+
 <!-- SDKREF:BEGIN Documents.Model.Base.FormElement -->
 **`FormElement`** — `WebCon.WorkFlow.SDK.Documents.Model.Base`
 
@@ -507,6 +554,28 @@ Class representing arguments passed to StartNewWorkFlow method
 - `Boolean SkipPermissionsCheck` *(property)* — Should system skip checking permissions of currently logged user for starting new workflows
 <!-- SDKREF:END Documents.Model.StartNewWorkFlowParams -->
 
+<!-- SDKREF:BEGIN Documents.Model.GetNewDocumentParams -->
+**`GetNewDocumentParams`** — `WebCon.WorkFlow.SDK.Documents.Model`
+
+Class representing new document creation parameters (e.g. in WEB API)
+
+- `Nullable<Int32> CompanyID` *(property)* — Company ID.
+- `Int32 DocTypeID` *(property)* — Document type ID
+- `UserInfo OverridenAuthor` *(property)* — Overriden author of workflow instance
+- `Nullable<Int32> ParentDocumentID` *(property)* — Parent document ID
+- `Boolean SkipPermissionsCheck` *(property)* — Should system skip checking permissions of currently logged user for starting new workflows
+- `Int32 WorkFlowID` *(property)* — WorkFlow ID
+<!-- SDKREF:END Documents.Model.GetNewDocumentParams -->
+
+<!-- SDKREF:BEGIN Documents.Model.StartNewWorkFlowResult -->
+**`StartNewWorkFlowResult`** — `WebCon.WorkFlow.SDK.Documents.Model`
+
+Class representing results of StartNewWorkFlow method
+
+- `Int32 CreatedDocumentID` *(property)* — ID of created workflow document
+- `String CreatedDocumentInstanceNumber` *(property)* — Instance number of created workflow document
+<!-- SDKREF:END Documents.Model.StartNewWorkFlowResult -->
+
 <!-- SDKREF:BEGIN Documents.Model.TaskData -->
 **`TaskData`** — `WebCon.WorkFlow.SDK.Documents.Model`
 
@@ -523,6 +592,20 @@ Inherited from `NewTaskData`:
 - `NewTaskPermissions Substitutions` *(property, inherited from NewTaskData)* — Defines whether substitutions should be allowed
 - `UserInfo User` *(property, inherited from NewTaskData)* — Gets user assigned to task
 <!-- SDKREF:END Documents.Model.TaskData -->
+
+## Users
+
+The type every `AssignedPersons` / `OverridenModifier` / `OverridenAuthor` property takes.
+
+<!-- SDKREF:BEGIN Common.Model.UserInfo -->
+**`UserInfo`** — `WebCon.WorkFlow.SDK.Common.Model`
+
+Class represents user data
+
+- `String ToString()` *(method)* — Returns string representation of this object
+- `String BpsID` *(property)* — Gets user ID
+- `String DisplayName` *(property)* — Gets user display name
+<!-- SDKREF:END Common.Model.UserInfo -->
 
 
 

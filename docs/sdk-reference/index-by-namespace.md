@@ -20,7 +20,7 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 
 | Type | Coverage | Summary |
 |------|----------|---------|
-| `ActionContextInfo` | index-only | Class representing custom action context arguments. |
+| `ActionContextInfo` | in-depth → plugin-types/custom-action.md | Class representing custom action context arguments. |
 | `ActionTransitionInfo` | index-only | Class representing informations about transition |
 | `ActionTriggers` | index-only | Type of executing action · `[Flags]` · **Values:** TimeOut = 1; MenuButton = 2; OnOpen = 4; Recurrent = 8; OnDelete = 16; OnSave = 32; Transition = 64 |
 | `ActionWithoutDocumentContext` | index-only | Class representing custom action context arguments. |
@@ -82,7 +82,7 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 
 | Type | Coverage | Summary |
 |------|----------|---------|
-| `BaseContext` | index-only | Plugin running context |
+| `BaseContext` | in-depth → plugin-types/custom-action.md | Plugin running context |
 | `BeforeSaveParams<T1>` | index-only | Class representing arguments that user gets while overriding OnBeforeElementSave method Plugin running context |
 | `BpsAccount` | index-only | BPS account data (user or group) |
 | `BpsAccountType` | index-only | BPS account type · **Values:** User = 1; SPGroup = 2; ADGroup = 3; BPSGroup = 4; ApiApplication = 5 |
@@ -101,7 +101,7 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 | `SearchConditions` | index-only | Class for narrowing search results |
 | `TemporaryEntitiesSearchCondition` | index-only | Class describing search condition |
 | `TemporaryEntitiesSearchConditions` | index-only | Class for narrowing search results |
-| `UserInfo` | index-only | Class represents user data |
+| `UserInfo` | in-depth → document-model.md | Class represents user data |
 
 ## `WebCon.WorkFlow.SDK.ConfigAttributes`
 
@@ -176,15 +176,15 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 | `EntityValueFormat` | index-only | Data representation format · **Values:** FullValue = 0; PairID = 1; PairName = 2 |
 | `ExistingDocumentData` | index-only | Class represents workflow object data |
 | `GetDocumentByIdParams` | index-only | Class representing parameters for getting existing workflow element. |
-| `GetNewDocumentParams` | index-only | Class representing new document creation parameters (e.g. |
+| `GetNewDocumentParams` | in-depth → document-model.md | Class representing new document creation parameters (e.g. |
 | `InstanceNumberDatePartitioning` | index-only | Class defines the date designating a subset of instances for which it then calculates the next instance number |
 | `InstanceNumberFormat` | index-only | Class defines format of instance number |
 | `InstanceNumberPartitioning` | index-only | Class defines a subset of instances for which it then calculates the next instance number |
 | `MoveDocumentToNextStepParams` | in-depth → document-model.md | Class representing parameters for moving document to next step (e.g. |
 | `MoveDocumentToNextStepResult` | in-depth → document-model.md | Class representing result of moving document to next step (e.g. |
-| `NewDocumentData` | index-only | Class representing paremeters for new document |
+| `NewDocumentData` | in-depth → document-model.md | Class representing paremeters for new document |
 | `StartNewWorkFlowParams` | in-depth → document-model.md | Class representing arguments passed to StartNewWorkFlow method |
-| `StartNewWorkFlowResult` | index-only | Class representing results of StartNewWorkFlow method |
+| `StartNewWorkFlowResult` | in-depth → document-model.md | Class representing results of StartNewWorkFlow method |
 | `TaskData` | in-depth → document-model.md | Class represents task data |
 | `UpdateDocumentParams` | in-depth → document-model.md | Class representing parameters passed to UpdateDocument method |
 | `UpdateDocumentResult` | index-only | Class representing results of UpdateDocument method |
@@ -399,8 +399,8 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 | `ExchangeConnection` | index-only | Class that represents a connection params to Exchange |
 | `ExchangeServerType` | index-only | Exchange server type · **Values:** OnPremises = 0; EwsBasicAuth = 1; MicrosoftGraph = 2 |
 | `ExchangeWebService` | index-only | Class that represents a connection params to ExchangeWebService |
-| `GetByConnectionParams` | index-only | Class with connections parameters |
-| `GetByDataSourceParams` | index-only | Class with data source parameters |
+| `GetByConnectionParams` | in-depth → tools.md | Class with connections parameters |
+| `GetByDataSourceParams` | in-depth → tools.md | Class with data source parameters |
 | `GetDataFromTemporaryEntitiesParams` | index-only | Class representing arguments that user passes to GetData method |
 | `GetDataTableFromDataSourceParams` | index-only | Class representing arguments that user passes to GetDataTableFromDataSource method |
 | `GetDataTableFromFieldDataSourceParams` | index-only | Class representing arguments that user passes to GetDataTableFromAttributeDataSource method |
