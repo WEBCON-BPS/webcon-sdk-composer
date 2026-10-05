@@ -4,7 +4,7 @@
     (Plugin packages -> New package).
 
 .DESCRIPTION
-    One entry point for both add-on kinds — the same script runs locally and in
+    One entry point for both add-on kinds - the same script runs locally and in
     the GitHub Action, so a green CI build means the package really works.
 
       .NET SDK plugin   csproj found  -> dotnet build, then zip <Name>.dll + <Name>.json
@@ -15,7 +15,7 @@
     actually does: derive the manifest version from the SDK NuGet major, probe the build
     output by target framework, ship only declared dependencies, split serviceDependencies /
     portalDependencies into their own folders, and include a UI control's .bpspkg from bin\.
-    SDK Tools remains the convenient path on a developer machine — see docs/packaging.md.
+    SDK Tools remains the convenient path on a developer machine - see docs/packaging.md.
 
     One deliberate difference: SDK Tools increments the fourth part of AssemblyVersion on
     every Publish. Here you pass -Version instead, so CI can stamp the run number and two
@@ -60,7 +60,7 @@ if ($csproj) {
     $name = [IO.Path]::GetFileNameWithoutExtension($csproj.Name)
     $manifest = Join-Path $addon "$name.json"
     if (-not (Test-Path $manifest)) {
-        throw "Manifest '$name.json' not found next to $($csproj.Name). Every .NET add-on needs one — see docs/packaging.md."
+        throw "Manifest '$name.json' not found next to $($csproj.Name). Every .NET add-on needs one - see docs/packaging.md."
     }
 
     if ($Version) {
@@ -116,7 +116,7 @@ if ($csproj) {
     Get-ChildItem (Join-Path $addon 'bin') -Filter *.bpspkg -File -ErrorAction SilentlyContinue |
         ForEach-Object { Copy-Item $_.FullName $staging; Write-Step "Including UI package $($_.Name)" }
 
-    # Only ship the libraries the manifest declares — anything else would load against
+    # Only ship the libraries the manifest declares - anything else would load against
     # the wrong runtime or shadow an assembly WEBCON already provides (Principle IV).
     foreach ($dep in $manifestJson.dependencies) {
         $depDll = Join-Path $binDir "$($dep -replace '\.dll$').dll"
@@ -169,5 +169,5 @@ elseif (Test-Path $packageJson) {
     Get-ChildItem $out -Filter *.zip | ForEach-Object { Write-Step "Package ready: $($_.FullName)" }
 }
 else {
-    throw "No .csproj and no package.json in '$addon' — not an add-on folder."
+    throw "No .csproj and no package.json in '$addon' - not an add-on folder."
 }

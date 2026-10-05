@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
     Self-check for workspace modes (local vs. own workspace, see AGENTS.md). No Pester needed:
-    ./tests/Workspace.Tests.ps1   — prints PASS lines, throws on the first failure.
+    ./tests/Workspace.Tests.ps1   - prints PASS lines, throws on the first failure.
     Uses a temp settings file via $env:COMPOSER_SETTINGS; your real settings are never touched.
 #>
 $ErrorActionPreference = 'Stop'
 $clone = Split-Path $PSScriptRoot -Parent
 $tools = Join-Path $clone 'tools'
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "composer-ws-test-$([guid]::NewGuid().ToString('N').Substring(0, 8))"
-# Space and a Polish letter on purpose — paths like that are common on author machines.
-$ws = Join-Path $tmp 'mój workspace'
+# Space and a Polish letter on purpose - paths like that are common on author machines.
+$ws = Join-Path $tmp ('m' + [char]0xF3 + 'j workspace')
 $savedEnv = $env:COMPOSER_SETTINGS
 $env:COMPOSER_SETTINGS = Join-Path $tmp 'settings.json'
 
@@ -19,6 +19,16 @@ function Throws($block, $pattern, $what) {
     Assert ($msg -and $msg -like "*$pattern*") "$what (got: $msg)"
 }
 function Root { & { . "$tools/composer-settings.ps1"; Get-ComposerRoot } 3>$null }
+
+# Windows PowerShell 5.1 reads BOM-less UTF-8 as the system code page: one non-ASCII character
+# breaks parsing. Scripts must be ASCII, or carry a BOM (the reference generator, which emits
+# non-ASCII characters into the docs).
+$bad = @(Get-ChildItem (Join-Path $clone 'tools'), (Join-Path $clone 'tests') -Recurse -Filter *.ps1 | Where-Object {
+        $bytes = [IO.File]::ReadAllBytes($_.FullName)
+        $bom = $bytes.Length -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF
+        -not $bom -and @($bytes | Where-Object { $_ -gt 127 }).Count -gt 0
+    } | ForEach-Object { $_.Name })
+Assert ($bad.Count -eq 0) "scripts parse in Windows PowerShell 5.1 (ASCII or BOM): $($bad -join ', ')"
 
 $before = git -C $clone status --porcelain
 New-Item $tmp -ItemType Directory | Out-Null

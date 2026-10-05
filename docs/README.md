@@ -11,6 +11,7 @@ guessing. Start with the first row.
 | [external-control-iframe.md](external-control-iframe.md) | Embedding a whole standalone web app on a form as an iframe. |
 | [form-js-api/](form-js-api/) | Talking to the form from the browser — the `webcon.min.js` API, used by both control kinds. |
 | [packaging.md](packaging.md) | Turning source into the zip you import. |
+| [messages-and-logs.md](messages-and-logs.md) | What may go into `args.Message` and the logs, and what never does. |
 | [dependencies.md](dependencies.md) | Shipping a third-party library. The most common way an add-on breaks at runtime. |
 | [deploy-designer-studio.md](deploy-designer-studio.md) | Registering the package and using it in a process. |
 | [troubleshooting.md](troubleshooting.md) | It built but does not register, does not load, or does not appear. |

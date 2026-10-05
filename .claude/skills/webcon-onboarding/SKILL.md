@@ -105,7 +105,7 @@ It prepares the workspace (`specs/`, `addons/`, `.gitignore`, a minimal `.specif
 Short and friendly:
 - where their work will go,
 - each **MISSING** prerequisite with what to install and what it blocks (.NET SDK → .NET
-  add-ons, Node.js → JS controls only, PowerShell 7 → the tools). Missing ones do not stop
+  add-ons, Node.js → JS controls only). The tools run in Windows PowerShell 5.1 and PowerShell 7. Missing ones do not stop
   anything now,
 - that the settings are in `.composer/settings.json` and they can ask you to change them any time.
 

@@ -1,6 +1,17 @@
 <!--
 SYNC IMPACT REPORT
 ==================
+Version: 2.3.0 (MINOR — new Principle VII: user-facing messages and logs)
+
+What changed:
+  1. Principle VII: `args.Message` reaches the user, the logger reaches administrators;
+     what may never appear in either is listed in docs/messages-and-logs.md. Learned from
+     production add-ons that leaked payload values, server names and stack traces.
+
+Templates reviewed: none need structural change — `/speckit.analyze` reads this file.
+
+Previous version
+----------------
 Version: 2.2.1 (PATCH — terminology: the product is "WEBCON", not "WEBCON BPS"; identifiers such as
 the WEBCON.BPS.* NuGet packages and the WEBCON-BPS GitHub organisation are unchanged)
 
@@ -58,6 +69,7 @@ Principles:
   IV.  Runtime Dependency Discipline
   V.   Environment Version Matching
   VI.  Onboarding Simplicity & Agent-Agnostic Tooling
+  VII. Messages Disclose Nothing
 
 Templates reviewed: plan-template.md, spec-template.md, tasks-template.md — the
 Constitution Check gate reads this file dynamically; no structural change needed.
@@ -157,6 +169,19 @@ Dependency placement follows the runtime split. This is the most common integrat
 - **Rationale**: friction in the first fifteen minutes is the difference between a working
   add-on and an abandoned clone.
 
+### VII. Messages Disclose Nothing
+
+- `args.Message` is shown to the user and kept in the logs; it MUST state the outcome and,
+  when there are details, point to the plugin log — nothing more.
+- No channel — message, `LogMessage` or `PluginLogger` — may carry external or personal data
+  values, stack traces, response bodies, tokens or credentials. Name the field, parameter or
+  query and give a length or a position instead. The plugin log MAY carry technical details an
+  administrator needs (status codes, the configured value that was not found).
+- A spec that reports an error MUST say which channel carries what; the list of what never
+  belongs is [`docs/messages-and-logs.md`](../../docs/messages-and-logs.md).
+- **Rationale**: messages and logs reach people who should not see the data an add-on handles.
+  A leak there is a data-protection incident, not a cosmetic bug.
+
 ## Technology Stack & Hard Constraints
 
 - **.NET add-on**: C#, `netstandard2.0` (or `net9.0`, Portal-only, justified in the spec),
@@ -202,4 +227,4 @@ principle, MINOR for a new principle or materially expanded guidance, PATCH for
 clarifications. Plans MUST pass the Constitution Check gate; a justified deviation belongs
 in the plan Complexity Tracking section, not in silence.
 
-**Version**: 2.2.1 | **Ratified**: 2026-08-31 | **Last amended**: 2026-10-02
+**Version**: 2.3.0 | **Ratified**: 2026-08-31 | **Last amended**: 2026-10-05

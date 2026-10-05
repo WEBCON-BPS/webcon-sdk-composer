@@ -1,4 +1,4 @@
-# Per-user Composer settings — dot-source this file: . "$PSScriptRoot/composer-settings.ps1"
+# Per-user Composer settings - dot-source this file: . "$PSScriptRoot/composer-settings.ps1"
 #
 # .composer/settings.json (git-ignored) says where the user's specs and add-ons live:
 #   { "workspace": "C:/GIT/my-addons", "agent": "claude", "webconVersion": "2026", "specLanguage": "en" }
@@ -33,7 +33,7 @@ function Get-ComposerRoot {
     # A workspace inside this clone would mix its .specify/ and specs/ with Composer's own.
     $clone = $script:ComposerClone.TrimEnd('\', '/')
     if ($workspace -eq $clone -or $workspace.StartsWith($clone + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
-        Write-Warning "Workspace '$workspace' is inside the Composer clone — using local mode."
+        Write-Warning "Workspace '$workspace' is inside the Composer clone - using local mode."
         return $script:ComposerClone
     }
     $workspace

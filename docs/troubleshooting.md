@@ -39,3 +39,28 @@ environment is licensed for SDK.
 
 `temporary_key.snk` is for local work only. For distribution, generate and use **your own**
 strong-name key (`AssemblyOriginatorKeyFile` in the `.csproj`).
+
+## A `tools/` script fails with "The string is missing the terminator"
+
+You are on a checkout from before the scripts were made ASCII-only, running Windows
+PowerShell 5.1: it reads a UTF-8 file without a byte-order mark as the system code page, so a
+`—` in the file breaks parsing. Pull the latest version. The scripts run in both Windows
+PowerShell 5.1 and PowerShell 7; `tests/Workspace.Tests.ps1` checks that they stay ASCII.
+
+Just installed PowerShell 7 with `winget install Microsoft.PowerShell` and `pwsh` is "not
+recognised"? Already-open terminals and apps do not see the new `PATH` yet. Restart them, or
+call `%LOCALAPPDATA%\Microsoft\WindowsApps\pwsh.exe` directly.
+
+## An SDK type is "index-only" or a generated block hides an overload
+
+`docs/sdk-reference/` shows one overload per name and parameter count, and only signatures for
+"in-depth" types. For anything else, read the assembly itself:
+
+```powershell
+./tools/sdk-reference/Inspect-SdkType.ps1 AutomationParam            # every overload, ctors with defaults
+./tools/sdk-reference/Inspect-SdkType.ps1 AutomationParamValue -IL   # what the methods actually call
+```
+
+It reads `WebCon.WorkFlow.SDK.dll` from your NuGet cache as metadata only, so no decompiler is
+needed. Calls into WEBCON host assemblies show up by name only, because their code is not in the
+package. A type you need often belongs in `Generate-SdkReference.ps1`'s in-depth list.

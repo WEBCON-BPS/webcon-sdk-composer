@@ -67,7 +67,7 @@ if ($settings.workspace) {
     $settings.workspace = $ws -replace '\\', '/'
 
     if ($ws -eq $clone -or $ws.StartsWith($clone + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
-        Write-Warning "'$ws' is the Composer clone or inside it — saving local mode instead."
+        Write-Warning "'$ws' is the Composer clone or inside it - saving local mode instead."
         $settings.workspace = $null
     }
     else {
@@ -100,10 +100,10 @@ $settings | ConvertTo-Json | Set-Content $settingsPath -Encoding utf8
 # ---------- prerequisites (report only, never fail) ----------
 function Report($name, $ok, $fix) {
     if ($ok) { Write-Host "  OK       $name" -ForegroundColor Green }
-    else { Write-Host "  MISSING  $name — $fix" -ForegroundColor Yellow }
+    else { Write-Host "  MISSING  $name - $fix" -ForegroundColor Yellow }
 }
 Write-Host 'Prerequisites:'
-Report 'PowerShell 7+' ($PSVersionTable.PSVersion.Major -ge 7) 'install from https://aka.ms/powershell (needed by tools/)'
+Report "PowerShell $($PSVersionTable.PSVersion.Major).$($PSVersionTable.PSVersion.Minor)" ($PSVersionTable.PSVersion.Major -ge 5) 'install PowerShell 7 from https://aka.ms/powershell'
 $sdks = try { & dotnet --list-sdks 2>$null } catch { $null }
 Report '.NET SDK' ([bool]$sdks) 'install from https://dotnet.microsoft.com/download (needed for .NET add-ons)'
 $node = try { & node --version 2>$null } catch { $null }

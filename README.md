@@ -53,7 +53,8 @@ You and the agent go through the eight steps. Whoever administers the WEBCON pro
 
 ## Quickstart (about 15 minutes)
 
-**You need:** an AI coding agent (Claude Code, GitHub Copilot or Codex), the
+**You need:** an AI coding agent (Claude Code, GitHub Copilot or Codex), PowerShell (the
+Windows PowerShell 5.1 that ships with Windows is enough; PowerShell 7 works too), the
 [.NET SDK](https://dotnet.microsoft.com/download) for .NET add-ons, [Node.js](https://nodejs.org)
 18+ for JS controls, and a WEBCON environment **with an SDK license** to actually run
 what you build.
