@@ -288,8 +288,8 @@ Inherited from `ConfigAttributeBase`:
 properties decorated with one of the column attributes below becomes a column, and each row the
 administrator adds becomes one `TRow`. The column attribute picks the cell editor — text, form
 field picker, drop-down, enum, checkbox. The blocks do not show constructors: every column
-attribute takes `(displayName)`, `(displayName, isRequired)` or `(displayName, description,
-isRequired)`, e.g. `[ConfigEditableGridColumn("Value", IsRequired = true)]`.
+attribute has `()`, `(displayName, isRequired = false)` and `(displayName, description,
+isRequired = false)`, e.g. `[ConfigEditableGridColumn("Value", IsRequired = true)]`.
 
 - The checkbox column is spelled **`ConfigEditableGridColumBoolean`** in the SDK (no second *n*).
 - `ConfigEditableGridColumnDropDownList.DataSourcePropertyName` names a property of the
@@ -441,9 +441,11 @@ foreach (var m in Configuration.Mappings ?? new List<FieldMapping>())
 - `FormFieldTypes` restricts which fields the picker offers. It is a `[Flags]` enum (values in
   [index-by-namespace.md](index-by-namespace.md)); set it to the types that can hold what the
   plugin writes, so a mapping that would fail at runtime cannot be configured.
-- The grid has `TagEvaluationMode`, which the SDK describes as the variable replacement mode
-  (`{123}` or `{WFD_ID}`). Whether variables typed into text cells are replaced at runtime is not
-  documented — verify it before a spec relies on it.
+- Text cells accept tags inserted from the editor's *Objects* panel, and WEBCON replaces them
+  before the run. This is checked in Designer Studio for automation parameters, where the tag
+  becomes the parameter's ID (see [Automation parameters](plugin-types/custom-action.md#automation-parameters)).
+  The grid's `TagEvaluationMode` picks the replacement form, `{123}` or `{WFD_ID}`. For
+  other tags, check the value your code receives before a spec relies on it.
 - In `process-setup.md`, the grid is one row per column under *Plugin configuration*, and every
   field it can point at belongs under *Prepare now* with its type.
 
@@ -500,6 +502,18 @@ At runtime the group is just a nested object: `Configuration.Connection.Endpoint
 `Order` (inherited from `ConfigAttributeBase`) sets the position of the group in the dialog.
 `ID` is **get-only** on `ConfigGroupBox`, so `[ConfigGroupBox(ID = "...")]` does not compile — the
 platform assigns it, and membership comes from the nesting, not from an id you match up by hand.
+
+### How it renders [Studio]
+
+- Group boxes render as **headed sections on one long page** — title, description bar,
+  collapse arrow — not as tabs. Settings outside any group go into a section called
+  *Plugin properties*. The SDK has no tab attribute, and a long configuration split into sections
+  is not necessarily easier to read; a flat configuration is a fine choice.
+- Containers nest: a `ConfigEditableItemList` (item-list picker plus its column grid) renders
+  correctly inside a group box.
+- **Adding a group box changes the stored shape of the configuration** — the moved settings
+  become a nested object. Plugin instances that are already configured lose those settings.
+  Decide on groups before the first release.
 
 > ### Do not stack `ConfigGroupBox` on a `ConfigEditable*` property
 >
