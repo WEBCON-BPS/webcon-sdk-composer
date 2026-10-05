@@ -28,7 +28,7 @@ column attributes and enums) in
 | `ConfigEditableConnectionID` | Data connection picker |
 | `ConfigEditableDataSourceID` | Data source picker |
 | `ConfigEditableItemList` | Item-list picker |
-| `ConfigEditableGrid` | Editable grid (rows of configured columns) |
+| `ConfigEditableGrid` | Editable grid (rows of configured columns) — see [Field mapping](#field-mapping) |
 | `ConfigGroupBox` | Expandable group box — goes on a property whose *type* is a class holding the grouped fields |
 
 Common parameters across the editable attributes: `DisplayName`, `Description` (and
@@ -283,6 +283,169 @@ Inherited from `ConfigAttributeBase`:
 - `String DisplayName` *(property, inherited from ConfigAttributeBase)* — Display name in config form
 - `Int32 Order` *(property, inherited from ConfigAttributeBase)* — Position on config form
 <!-- SDKREF:END ConfigAttributes.ConfigEditableGrid -->
+
+`ConfigEditableGrid` goes on a **`List<TRow>`** property. `TRow` is a plain class: each of its
+properties decorated with one of the column attributes below becomes a column, and each row the
+administrator adds becomes one `TRow`. The column attribute picks the cell editor — text, form
+field picker, drop-down, enum, checkbox. The blocks do not show constructors: every column
+attribute takes `(displayName)`, `(displayName, isRequired)` or `(displayName, description,
+isRequired)`, e.g. `[ConfigEditableGridColumn("Value", IsRequired = true)]`.
+
+- The checkbox column is spelled **`ConfigEditableGridColumBoolean`** in the SDK (no second *n*).
+- `ConfigEditableGridColumnDropDownList.DataSourcePropertyName` names a property of the
+  configuration that holds the choices — per the SDK, a table of `DropDownListItem` objects.
+- A full example is under [Field mapping](#field-mapping).
+
+<!-- SDKREF:BEGIN ConfigAttributes.ConfigEditableGridColumn -->
+**`ConfigEditableGridColumn`** — `WebCon.WorkFlow.SDK.ConfigAttributes`
+
+Attribute do describe column names form ConfigEditableGrid
+
+Inherited from `ConfigEditableAttributeBase`:
+
+- `Boolean IsRequired` *(property, inherited from ConfigEditableAttributeBase)* — Blocks configuration save until value is set.
+
+Inherited from `ConfigAttributeBase`:
+
+- `String Description` *(property, inherited from ConfigAttributeBase)* — Field description
+- `Boolean DescriptionAsHTML` *(property, inherited from ConfigAttributeBase)* — Changes descrpiton display format to html
+- `String DisplayName` *(property, inherited from ConfigAttributeBase)* — Display name in config form
+- `Int32 Order` *(property, inherited from ConfigAttributeBase)* — Position on config form
+<!-- SDKREF:END ConfigAttributes.ConfigEditableGridColumn -->
+
+<!-- SDKREF:BEGIN ConfigAttributes.ConfigEditableGridColumnFormFieldID -->
+**`ConfigEditableGridColumnFormFieldID`** — `WebCon.WorkFlow.SDK.ConfigAttributes`
+
+Attribute do describe column names form ConfigEditableGrid
+
+- `Int32 DefaultValue` *(property)* — Default value when form field is not set
+- `FormFieldTypes FormFieldTypes` *(property)* — Type which restricts choosing.
+
+Inherited from `ConfigEditableAttributeBase`:
+
+- `Boolean IsRequired` *(property, inherited from ConfigEditableAttributeBase)* — Blocks configuration save until value is set.
+
+Inherited from `ConfigAttributeBase`:
+
+- `String Description` *(property, inherited from ConfigAttributeBase)* — Field description
+- `Boolean DescriptionAsHTML` *(property, inherited from ConfigAttributeBase)* — Changes descrpiton display format to html
+- `String DisplayName` *(property, inherited from ConfigAttributeBase)* — Display name in config form
+- `Int32 Order` *(property, inherited from ConfigAttributeBase)* — Position on config form
+<!-- SDKREF:END ConfigAttributes.ConfigEditableGridColumnFormFieldID -->
+
+<!-- SDKREF:BEGIN ConfigAttributes.ConfigEditableGridColumnDropDownList -->
+**`ConfigEditableGridColumnDropDownList`** — `WebCon.WorkFlow.SDK.ConfigAttributes`
+
+Instance of ConfigEditableGridColumnDropDownList
+
+- `String DataSourcePropertyName` *(property)* — Name of property which contains data.
+- `String DefaultValue` *(property)* — Default list value.
+
+Inherited from `ConfigEditableAttributeBase`:
+
+- `Boolean IsRequired` *(property, inherited from ConfigEditableAttributeBase)* — Blocks configuration save until value is set.
+
+Inherited from `ConfigAttributeBase`:
+
+- `String Description` *(property, inherited from ConfigAttributeBase)* — Field description
+- `Boolean DescriptionAsHTML` *(property, inherited from ConfigAttributeBase)* — Changes descrpiton display format to html
+- `String DisplayName` *(property, inherited from ConfigAttributeBase)* — Display name in config form
+- `Int32 Order` *(property, inherited from ConfigAttributeBase)* — Position on config form
+<!-- SDKREF:END ConfigAttributes.ConfigEditableGridColumnDropDownList -->
+
+<!-- SDKREF:BEGIN ConfigAttributes.ConfigEditableGridColumnEnum -->
+**`ConfigEditableGridColumnEnum`** — `WebCon.WorkFlow.SDK.ConfigAttributes`
+
+Instance of ConfigEditableGridColumnEnum
+
+- `Int32 DefaultValue` *(property)* — Default value when form field is not set
+
+Inherited from `ConfigEditableAttributeBase`:
+
+- `Boolean IsRequired` *(property, inherited from ConfigEditableAttributeBase)* — Blocks configuration save until value is set.
+
+Inherited from `ConfigAttributeBase`:
+
+- `String Description` *(property, inherited from ConfigAttributeBase)* — Field description
+- `Boolean DescriptionAsHTML` *(property, inherited from ConfigAttributeBase)* — Changes descrpiton display format to html
+- `String DisplayName` *(property, inherited from ConfigAttributeBase)* — Display name in config form
+- `Int32 Order` *(property, inherited from ConfigAttributeBase)* — Position on config form
+<!-- SDKREF:END ConfigAttributes.ConfigEditableGridColumnEnum -->
+
+<!-- SDKREF:BEGIN ConfigAttributes.ConfigEditableGridColumBoolean -->
+**`ConfigEditableGridColumBoolean`** — `WebCon.WorkFlow.SDK.ConfigAttributes`
+
+Attribute do describe column names form ConfigEditableGrid
+
+- `Boolean DefaultValue` *(property)* — Default value when form field is not set
+
+Inherited from `ConfigEditableAttributeBase`:
+
+- `Boolean IsRequired` *(property, inherited from ConfigEditableAttributeBase)* — Blocks configuration save until value is set.
+
+Inherited from `ConfigAttributeBase`:
+
+- `String Description` *(property, inherited from ConfigAttributeBase)* — Field description
+- `Boolean DescriptionAsHTML` *(property, inherited from ConfigAttributeBase)* — Changes descrpiton display format to html
+- `String DisplayName` *(property, inherited from ConfigAttributeBase)* — Display name in config form
+- `Int32 Order` *(property, inherited from ConfigAttributeBase)* — Position on config form
+<!-- SDKREF:END ConfigAttributes.ConfigEditableGridColumBoolean -->
+
+## Field mapping
+
+The usual "which value goes to which form field" setting is a grid with a key column and a
+`ConfigEditableGridColumnFormFieldID` column. It is the pattern of WEBCON's own
+[`StartNewDocument`](https://github.com/WEBCON-BPS/develop-docs/tree/main/WebCon.BpsExt.Examples/WebCon.BpsExt.Examples/CustomActions/StartNewDocument)
+example; this version compiles against `WEBCON.BPS.2026.SDK.Libraries` 26.1.1.26:
+
+```csharp
+using System.Collections.Generic;
+using WebCon.WorkFlow.SDK.Common;
+using WebCon.WorkFlow.SDK.ConfigAttributes;
+
+public class MyActionConfig : PluginConfiguration
+{
+    // One grid = one table in the configuration dialog; each row is a FieldMapping.
+    [ConfigEditableGrid("Field mapping", Description = "Which value from the response goes to which form field")]
+    public List<FieldMapping> Mappings { get; set; }
+}
+
+// Plain class: the attributes on its properties become the grid's columns.
+public class FieldMapping
+{
+    [ConfigEditableGridColumn("Response key", IsRequired = true)]
+    public string SourceKey { get; set; }
+
+    [ConfigEditableGridColumnFormFieldID("Target field", IsRequired = true,
+        FormFieldTypes = FormFieldTypes.TextSingleLine | FormFieldTypes.TextMultipleLines)]
+    public int TargetFieldId { get; set; }
+
+    [ConfigEditableGridColumBoolean("Overwrite if filled", DefaultValue = true)]
+    public bool Overwrite { get; set; }
+}
+```
+
+At runtime the rows are a plain list. Guard it — it stays `null` until the administrator adds a
+row:
+
+```csharp
+var document = args.Context.CurrentDocument;
+foreach (var m in Configuration.Mappings ?? new List<FieldMapping>())
+{
+    if (!response.TryGetValue(m.SourceKey, out var value)) continue;
+    if (!m.Overwrite && document.GetFieldValue(m.TargetFieldId) != null) continue;
+    await document.SetFieldValueAsync(m.TargetFieldId, value);
+}
+```
+
+- `FormFieldTypes` restricts which fields the picker offers. It is a `[Flags]` enum (values in
+  [index-by-namespace.md](index-by-namespace.md)); set it to the types that can hold what the
+  plugin writes, so a mapping that would fail at runtime cannot be configured.
+- The grid has `TagEvaluationMode`, which the SDK describes as the variable replacement mode
+  (`{123}` or `{WFD_ID}`). Whether variables typed into text cells are replaced at runtime is not
+  documented — verify it before a spec relies on it.
+- In `process-setup.md`, the grid is one row per column under *Plugin configuration*, and every
+  field it can point at belongs under *Prepare now* with its type.
 
 <!-- SDKREF:BEGIN ConfigAttributes.ConfigGroupBox -->
 **`ConfigGroupBox`** — `WebCon.WorkFlow.SDK.ConfigAttributes`

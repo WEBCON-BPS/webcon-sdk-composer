@@ -33,11 +33,11 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 
 | Type | Coverage | Summary |
 |------|----------|---------|
-| `AutomationParam` | index-only | Class representing automation parameter |
-| `AutomationParams` | index-only | Automation params |
-| `AutomationParamType` | index-only | Type of data returned by automation parameter · **Values:** String = 1; Decimal = 2; Boolean = 3; Date = 4; UserList = 5 |
-| `AutomationParamValue` | index-only | Class representing value of automation parameter |
-| `AutomationUserList` | index-only | Class representing value of user list type automation parameter |
+| `AutomationParam` | in-depth → plugin-types/custom-action.md | Class representing automation parameter |
+| `AutomationParams` | in-depth → plugin-types/custom-action.md | Automation params |
+| `AutomationParamType` | in-depth → plugin-types/custom-action.md | Type of data returned by automation parameter · **Values:** String = 1; Decimal = 2; Boolean = 3; Date = 4; UserList = 5 |
+| `AutomationParamValue` | in-depth → plugin-types/custom-action.md | Class representing value of automation parameter |
+| `AutomationUserList` | in-depth → plugin-types/custom-action.md | Class representing value of user list type automation parameter |
 
 ## `WebCon.WorkFlow.SDK.AutenticationPlugins`
 
@@ -118,11 +118,11 @@ means the type has a full entry on that page; `index-only` means open the SDK di
 | `ConfigEditableEnum` | in-depth → configuration-attributes.md | Instance of ConfigEditableEnum. |
 | `ConfigEditableFormFieldID` | in-depth → configuration-attributes.md | Instance of ConfigEditableFormFieldID |
 | `ConfigEditableGrid` | in-depth → configuration-attributes.md | Instance of ConfigEditableGrid |
-| `ConfigEditableGridColumBoolean` | index-only | Attribute do describe column names form ConfigEditableGrid |
-| `ConfigEditableGridColumn` | index-only | Attribute do describe column names form ConfigEditableGrid |
-| `ConfigEditableGridColumnDropDownList` | index-only | Instance of ConfigEditableGridColumnDropDownList |
-| `ConfigEditableGridColumnEnum` | index-only | Instance of ConfigEditableGridColumnEnum |
-| `ConfigEditableGridColumnFormFieldID` | index-only | Attribute do describe column names form ConfigEditableGrid |
+| `ConfigEditableGridColumBoolean` | in-depth → configuration-attributes.md | Attribute do describe column names form ConfigEditableGrid |
+| `ConfigEditableGridColumn` | in-depth → configuration-attributes.md | Attribute do describe column names form ConfigEditableGrid |
+| `ConfigEditableGridColumnDropDownList` | in-depth → configuration-attributes.md | Instance of ConfigEditableGridColumnDropDownList |
+| `ConfigEditableGridColumnEnum` | in-depth → configuration-attributes.md | Instance of ConfigEditableGridColumnEnum |
+| `ConfigEditableGridColumnFormFieldID` | in-depth → configuration-attributes.md | Attribute do describe column names form ConfigEditableGrid |
 | `ConfigEditableInteger` | in-depth → configuration-attributes.md | Instance of ConfigEditableInteger |
 | `ConfigEditableItemList` | in-depth → configuration-attributes.md | Instance of ConfigEditableItemList. |
 | `ConfigEditableItemListColumnID` | index-only | Attribute do describe column names form ConfigEditableItemList |

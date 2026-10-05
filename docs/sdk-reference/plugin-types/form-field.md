@@ -55,14 +55,14 @@ Inherited from `PluginBase<TConfig>`:
 Logic part of plugin that allows to change behavior of standard field.
 
 - `Task<TValue> ConvertToControlTypeAsync(Object)` *(method)* — A method that converts the value to the format of the form field control
-- `Task<Object> ConvertToDBTypeAsync()` *(method)* — Method that converts a value to a format in the database
-- `Task OnAfterElementSaveAsync(AfterSaveParams<FormFieldValueExtensionContext<>>)` *(method)* — Method performed after saving item to database
-- `Void OnBeforeElementDelete(BeforeDeleteParams<FormFieldValueExtensionContext<>>)` *(method)* — Method performed after removing item from database
-- `Task OnBeforeElementDeleteAsync(BeforeDeleteParams<FormFieldValueExtensionContext<>>)` *(method)* — Validation method called each time document is saved
-- `Task OnBeforeElementSaveAsync(BeforeSaveParams<FormFieldValueExtensionContext<>>)` *(method)* — Method performed after saving item to database
+- `Task<Object> ConvertToDBTypeAsync(T2)` *(method)* — Method that converts a value to a format in the database
+- `Task OnAfterElementSaveAsync(AfterSaveParams<FormFieldValueExtensionContext<T2>>)` *(method)* — Method performed after saving item to database
+- `Void OnBeforeElementDelete(BeforeDeleteParams<FormFieldValueExtensionContext<T2>>)` *(method)* — Method performed after removing item from database
+- `Task OnBeforeElementDeleteAsync(BeforeDeleteParams<FormFieldValueExtensionContext<T2>>)` *(method)* — Validation method called each time document is saved
+- `Task OnBeforeElementSaveAsync(BeforeSaveParams<FormFieldValueExtensionContext<T2>>)` *(method)* — Method performed after saving item to database
 - `String Test()` *(method)* — Information about element on form
-- `Task ValidateAsync(ControlValidationParams<FormFieldValueExtensionContext<>>)` *(method)* — Method called on each item save that causes validation, e.g.
-- `Task VerifySaveRestrictionsAsync(ControlSaveRestrictionsParams<FormFieldValueExtensionContext<>>)` *(method)* — Validation method called each time document is saved
+- `Task ValidateAsync(ControlValidationParams<FormFieldValueExtensionContext<T2>>)` *(method)* — Method called on each item save that causes validation, e.g.
+- `Task VerifySaveRestrictionsAsync(ControlSaveRestrictionsParams<FormFieldValueExtensionContext<T2>>)` *(method)* — Validation method called each time document is saved
 - `Boolean HasCustomModel` *(property)* — A property that specifies whether the FormField has a custom model
 
 Inherited from `PluginFieldBase<TConfig>`:
@@ -112,7 +112,7 @@ Inherited from `BaseContext`:
 Class representing form field exetnsion running context
 
 - `Task<TValue> GetValueAsync()` *(method)* — Gets form field value
-- `Task SetFieldValueAsync()` *(method)* — Sets form field value
+- `Task SetFieldValueAsync(T1)` *(method)* — Sets form field value
 
 Inherited from `FormFieldExtensionContext`:
 
