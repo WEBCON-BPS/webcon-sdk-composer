@@ -70,6 +70,8 @@ carry property and return **types**, and list members declared on base classes u
 | a base class, override, params or context | [`docs/sdk-reference/plugin-types/`](docs/sdk-reference/plugin-types/) |
 | exact signatures for any SDK type | [`docs/sdk-reference/.generated/`](docs/sdk-reference/.generated/), index in [`index-by-namespace.md`](docs/sdk-reference/index-by-namespace.md) |
 | how a setting shows up in Designer Studio | [`docs/sdk-reference/configuration-attributes.md`](docs/sdk-reference/configuration-attributes.md) |
+| a field-mapping table in the configuration | [`configuration-attributes.md#field-mapping`](docs/sdk-reference/configuration-attributes.md#field-mapping) |
+| automation parameters (read / set from an action) | [`plugin-types/custom-action.md#automation-parameters`](docs/sdk-reference/plugin-types/custom-action.md#automation-parameters) |
 | reading/writing fields, item lists, attachments | [`docs/sdk-reference/document-model.md`](docs/sdk-reference/document-model.md) |
 | email, SQL, files, users, security helpers | [`docs/sdk-reference/tools.md`](docs/sdk-reference/tools.md) |
 | the JS custom control contract | [`docs/js-custom-control.md`](docs/js-custom-control.md) |

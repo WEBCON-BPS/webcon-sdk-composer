@@ -117,6 +117,11 @@ $inDepth = [ordered]@{
     "$($ns)ActionPlugins.Model.RunCustomActionParams"               = 'plugin-types/custom-action.md'
     "$($ns)ActionPlugins.Model.RunCustomActionWithoutContextParams" = 'plugin-types/custom-action.md'
     "$($ns)ActionPlugins.Model.ActionContextInfo"                   = 'plugin-types/custom-action.md'
+    "$($ns)ActionPlugins.Model.Automation.AutomationParams"         = 'plugin-types/custom-action.md'
+    "$($ns)ActionPlugins.Model.Automation.AutomationParam"          = 'plugin-types/custom-action.md'
+    "$($ns)ActionPlugins.Model.Automation.AutomationParamValue"     = 'plugin-types/custom-action.md'
+    "$($ns)ActionPlugins.Model.Automation.AutomationParamType"      = 'plugin-types/custom-action.md'
+    "$($ns)ActionPlugins.Model.Automation.AutomationUserList"       = 'plugin-types/custom-action.md'
     "$($ns)Common.Model.BaseContext"                                = 'plugin-types/custom-action.md'
     # Business Rule
     "$($ns)BusinessRulePlugins.CustomBusinessRule``1"                = 'plugin-types/business-rule.md'
@@ -164,6 +169,11 @@ $inDepth = [ordered]@{
     "$($ns)ConfigAttributes.ConfigEditableDataSourceID"             = 'configuration-attributes.md'
     "$($ns)ConfigAttributes.ConfigEditableItemList"                 = 'configuration-attributes.md'
     "$($ns)ConfigAttributes.ConfigEditableGrid"                     = 'configuration-attributes.md'
+    "$($ns)ConfigAttributes.ConfigEditableGridColumn"               = 'configuration-attributes.md'
+    "$($ns)ConfigAttributes.ConfigEditableGridColumnFormFieldID"    = 'configuration-attributes.md'
+    "$($ns)ConfigAttributes.ConfigEditableGridColumnDropDownList"   = 'configuration-attributes.md'
+    "$($ns)ConfigAttributes.ConfigEditableGridColumnEnum"           = 'configuration-attributes.md'
+    "$($ns)ConfigAttributes.ConfigEditableGridColumBoolean"         = 'configuration-attributes.md'
     "$($ns)ConfigAttributes.ConfigGroupBox"                         = 'configuration-attributes.md'
     # Document object model core — FR-004
     "$($ns)Documents.DocumentsManager"                              = 'document-model.md'
@@ -277,12 +287,17 @@ function Get-Summary($member) {
 function Convert-ShortType([string] $t) {
     if (-not $t) { return $t }
     $t = $t.Trim()
+    # By-ref (`0@). Every by-ref parameter in the SDK is a TryGet* out parameter.
+    $byRef = $t.EndsWith('@')
+    $t = $t -replace '@', ''
     $t = $t -replace '\{', '<' -replace '\}', '>'   # generics
-    $t = $t -replace '@', ''                          # by-ref (out/ref)
     # collapse dotted namespaces to the last identifier segment
     $t = [regex]::Replace($t, '([A-Za-z_][A-Za-z0-9_]*\.)+([A-Za-z_][A-Za-z0-9_]*)', '$2')
     $t = $t -replace '``\d+', 'T'                     # method generic param ``0 -> T
+    # Type generic param `0 (not after an identifier) -> T1, matching the <T1> in the type's name.
+    $t = [regex]::Replace($t, '(?<![A-Za-z0-9_])`(\d+)', { param($m) 'T' + ([int]$m.Groups[1].Value + 1) })
     $t = $t -replace '`\d+', ''                       # type arity `1 -> (drop; args shown in <>)
+    if ($byRef) { $t = "out $t" }
     return $t
 }
 
