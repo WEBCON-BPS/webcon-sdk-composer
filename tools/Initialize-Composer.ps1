@@ -23,7 +23,7 @@
 .EXAMPLE
     ./tools/Initialize-Composer.ps1 -Workspace C:/GIT/my-addons -CreateWorkspace
     ./tools/Initialize-Composer.ps1 -Workspace ''
-    ./tools/Initialize-Composer.ps1 -WebconVersion Main -SpecLanguage pl
+    ./tools/Initialize-Composer.ps1 -WebconVersion Main -SpecLanguage de
 #>
 [CmdletBinding()]
 param(

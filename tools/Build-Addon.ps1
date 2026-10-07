@@ -31,8 +31,8 @@
     a fresh one. Defaults to leaving AssemblyInfo.cs untouched.
 
 .EXAMPLE
-    ./tools/Build-Addon.ps1 -Path addons/gus-lookup
-    ./tools/Build-Addon.ps1 -Path addons/gus-lookup -Version 1.0.0.42
+    ./tools/Build-Addon.ps1 -Path addons/vat-lookup
+    ./tools/Build-Addon.ps1 -Path addons/vat-lookup -Version 1.0.0.42
 #>
 [CmdletBinding()]
 param(

@@ -8,8 +8,8 @@ $ErrorActionPreference = 'Stop'
 $clone = Split-Path $PSScriptRoot -Parent
 $tools = Join-Path $clone 'tools'
 $tmp = Join-Path ([IO.Path]::GetTempPath()) "composer-ws-test-$([guid]::NewGuid().ToString('N').Substring(0, 8))"
-# Space and a Polish letter on purpose - paths like that are common on author machines.
-$ws = Join-Path $tmp ('m' + [char]0xF3 + 'j workspace')
+# A space and a non-ASCII letter on purpose - user folders like that are common.
+$ws = Join-Path $tmp ('caf' + [char]0xE9 + ' workspace')
 $savedEnv = $env:COMPOSER_SETTINGS
 $env:COMPOSER_SETTINGS = Join-Path $tmp 'settings.json'
 

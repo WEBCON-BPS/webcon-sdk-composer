@@ -77,22 +77,22 @@ table. Unsure? Ask your agent — it reads that file.
 namespace and plugin type correct:
 
 ```powershell
-./tools/New-Addon.ps1 -Name GusLookup -Type action
+./tools/New-Addon.ps1 -Name VatLookup -Type action
 ```
 
 **3. Say what you want.** In your agent, in whatever language you think in:
 
-> /speckit.specify A custom action that takes a NIP from a form field, looks the company up
-> in the GUS API, and fills in the name and address fields. If the NIP is not found, block
-> the transition with a clear message.
+> /speckit.specify A custom action that takes a VAT number from a form field, looks the
+> company up in the EU VIES service, and fills in the name and address fields. If the VAT
+> number is not valid, block the transition with a clear message.
 
-The agent will ask what it needs to know and write `specs/<n>-gus-lookup/spec.md`. **Read
+The agent will ask what it needs to know and write `specs/<n>-vat-lookup/spec.md`. **Read
 that file.** It is the deliverable that matters — correcting it is cheaper than correcting
 code, and everything downstream is derived from it.
 
 **4. Let it build.** `/speckit.plan` → `/speckit.tasks` → `/speckit.implement`.
 
-`/speckit.plan` also writes `specs/<n>-gus-lookup/process-setup.md` — the fields to create and
+`/speckit.plan` also writes `specs/<n>-vat-lookup/process-setup.md` — the fields to create and
 their types, the constants, where the plugin attaches, what goes in its configuration, how to
 verify it. **Go configure that while the code is being written**; the two halves only meet when
 you register the package. Example:
@@ -102,10 +102,10 @@ Changed the configuration later? `/webcon.process-setup` regenerates the page as
 **5. Package it.**
 
 ```powershell
-./tools/Build-Addon.ps1 -Path addons/GusLookup
+./tools/Build-Addon.ps1 -Path addons/VatLookup
 ```
 
-You get `addons/GusLookup/publish/Webcon.Addon.GusLookup.zip` — the same package Visual
+You get `addons/VatLookup/publish/Webcon.Addon.VatLookup.zip` — the same package Visual
 Studio's SDK Tools would publish, assembled the same way. See
 [`docs/packaging.md`](docs/packaging.md).
 

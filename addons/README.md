@@ -3,10 +3,10 @@
 Your add-ons live here — one folder each.
 
 ```powershell
-../tools/New-Addon.ps1 -Name GusLookup -Type action
+../tools/New-Addon.ps1 -Name VatLookup -Type action
 ```
 
-That gives you `addons/GusLookup/` with a project that already compiles: manifest, GUID,
+That gives you `addons/VatLookup/` with a project that already compiles: manifest, GUID,
 namespace and plugin type correct. Then describe what you want to your agent and work the
 Spec-Kit loop (see the [README](../README.md)).
 

@@ -11,7 +11,7 @@
     Spec-Kit loop - see README.md.
 
 .PARAMETER Name
-    Add-on name in PascalCase, e.g. GusLookup. Used for the folder, the assembly,
+    Add-on name in PascalCase, e.g. VatLookup. Used for the folder, the assembly,
     the namespace and the plugin class.
 
 .PARAMETER Destination
@@ -30,7 +30,7 @@
     Unsure? Read docs/plugin-types.md - picking wrong means a rewrite, not a refactor.
 
 .EXAMPLE
-    ./tools/New-Addon.ps1 -Name GusLookup -Type action
+    ./tools/New-Addon.ps1 -Name VatLookup -Type action
     ./tools/New-Addon.ps1 -Name ContractGantt -Type control
 #>
 [CmdletBinding()]
