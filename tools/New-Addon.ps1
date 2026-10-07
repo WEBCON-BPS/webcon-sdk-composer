@@ -8,10 +8,10 @@
     type already correct. That is the part everyone gets wrong by hand.
 
     Then describe what you want in plain language and let your agent work the
-    Spec-Kit loop — see README.md.
+    Spec-Kit loop - see README.md.
 
 .PARAMETER Name
-    Add-on name in PascalCase, e.g. GusLookup. Used for the folder, the assembly,
+    Add-on name in PascalCase, e.g. VatLookup. Used for the folder, the assembly,
     the namespace and the plugin class.
 
 .PARAMETER Destination
@@ -19,18 +19,18 @@
     (.composer/settings.json), or this repository in local mode. Default: addons.
 
 .PARAMETER Type
-    action      Custom action                 — runs on a path, button, timer
-    rule        Custom business rule          — returns a value to the form
-    datasource  Custom data source            — feeds pickers and reports
-    formfield   Form field extension (.NET)   — server-side hooks on a field
-    labelprint  Custom label print template   — raw printer payload
-    auth        Custom REST authentication    — pre-authenticated HttpClient
-    control     JS custom control             — React UI inside a form field
+    action      Custom action                 - runs on a path, button, timer
+    rule        Custom business rule          - returns a value to the form
+    datasource  Custom data source            - feeds pickers and reports
+    formfield   Form field extension (.NET)   - server-side hooks on a field
+    labelprint  Custom label print template   - raw printer payload
+    auth        Custom REST authentication    - pre-authenticated HttpClient
+    control     JS custom control             - React UI inside a form field
 
-    Unsure? Read docs/plugin-types.md — picking wrong means a rewrite, not a refactor.
+    Unsure? Read docs/plugin-types.md - picking wrong means a rewrite, not a refactor.
 
 .EXAMPLE
-    ./tools/New-Addon.ps1 -Name GusLookup -Type action
+    ./tools/New-Addon.ps1 -Name VatLookup -Type action
     ./tools/New-Addon.ps1 -Name ContractGantt -Type control
 #>
 [CmdletBinding()]

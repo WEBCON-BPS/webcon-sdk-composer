@@ -26,7 +26,7 @@ $ErrorActionPreference = 'Stop'
 Set-Location (Split-Path $PSScriptRoot -Parent)
 
 if (-not (Get-Command specify -ErrorAction SilentlyContinue)) {
-    throw 'The Specify CLI is not on PATH. Install it first — see CONTRIBUTING.md.'
+    throw 'The Specify CLI is not on PATH. Install it first - see CONTRIBUTING.md.'
 }
 
 function Invoke-Specify {
@@ -53,6 +53,6 @@ finally { & specify integration use copilot | Out-Null }
 
 Invoke-Specify workflow update
 
-# Expect exactly one finding: error unsafe-multi-install (copilot) — see CONTRIBUTING.md.
+# Expect exactly one finding: error unsafe-multi-install (copilot) - see CONTRIBUTING.md.
 # Anything else, or "Modified managed files" above 0, needs a look before you commit.
 & specify integration status

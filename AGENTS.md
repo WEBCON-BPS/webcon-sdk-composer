@@ -8,7 +8,7 @@ pointers — `CLAUDE.md`, `.github/copilot-instructions.md`). **Change rules her
 ## First run: no settings, onboarding first
 
 **If `.composer/settings.json` does not exist, start with onboarding before doing anything
-else** — whatever the user asked ("what next?", "co dalej?", or a real task). Onboarding first
+else** — whatever the user asked ("what next?", "how do I start?", or a real task). Onboarding first
 introduces Composer (what it is, how the work goes), then asks a few questions one at a time
 and saves how they work and where their add-ons go — never a wall of questions at once. If they decline, work in local mode and do
 not ask again in this conversation. If the file exists and they ask what next, summarise it and
@@ -77,6 +77,7 @@ carry property and return **types**, and list members declared on base classes u
 | the JS custom control contract | [`docs/js-custom-control.md`](docs/js-custom-control.md) |
 | the browser-side form API | [`docs/form-js-api/js-api-reference.md`](docs/form-js-api/js-api-reference.md) |
 | turning it into an importable package | [`docs/packaging.md`](docs/packaging.md) |
+| what goes into `args.Message` vs. the logs | [`docs/messages-and-logs.md`](docs/messages-and-logs.md) |
 
 If something is genuinely missing from the reference, say so and cite
 [developer.webcon.com](https://developer.webcon.com) — do not invent a signature.
@@ -181,6 +182,10 @@ first and the README is a copy edit.
   *Verify plugins* in Designer Studio, not at build time.
 - **Never hardcode secrets.** Read them from the plugin configuration; Designer Studio stores
   it encrypted.
+- **`args.Message` is for the user, the logger is for administrators.** Never put external or
+  personal data values, stack traces, server/database/connection names, response bodies or
+  tokens into `args.Message`; give a short outcome and send details to `PluginLogger`, without
+  the values themselves. The full list: [`docs/messages-and-logs.md`](docs/messages-and-logs.md).
 - **Branch names are lowercase** (`a-z`, `0-9`, `/`, `-`, `_`).
 
 ## Definition of done

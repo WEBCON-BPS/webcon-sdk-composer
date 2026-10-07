@@ -1,6 +1,6 @@
 ---
 name: "webcon-onboarding"
-description: "First-run setup for SDK Composer: introduce what Composer is and how to work with it, then a short guided interview (local or own workspace, WEBCON version, spec language), saved to .composer/settings.json, a machine check, and a hand-off to the first add-on. Use when .composer/settings.json does not exist, when someone has just cloned the repo and asks 'what next', 'co dalej', 'how do I start', or when they want to change where their add-ons go."
+description: "First-run setup for SDK Composer: introduce what Composer is and how to work with it, then a short guided interview (local or own workspace, WEBCON version, spec language), saved to .composer/settings.json, a machine check, and a hand-off to the first add-on. Use when .composer/settings.json does not exist, when someone has just cloned the repo and asks 'what next', 'how do I start', or when they want to change where their add-ons go."
 argument-hint: "Optional: what you want to build first"
 user-invocable: true
 disable-model-invocation: false
@@ -19,7 +19,7 @@ then walks them through a few questions **one at a time, like a short survey**, 
 and gets them to their first add-on. The questions are yours; everything after them is done by
 `tools/Initialize-Composer.ps1`, so the result is the same whoever runs it.
 
-Speak the user's language (if they wrote in Polish, everything below is said in Polish). Be warm
+Answer in the language the user writes in, including everything below. Be warm
 and brief. **Never dump all the questions as a list or a table** — that reads like a form to fill
 in, not a conversation.
 
@@ -105,7 +105,7 @@ It prepares the workspace (`specs/`, `addons/`, `.gitignore`, a minimal `.specif
 Short and friendly:
 - where their work will go,
 - each **MISSING** prerequisite with what to install and what it blocks (.NET SDK → .NET
-  add-ons, Node.js → JS controls only, PowerShell 7 → the tools). Missing ones do not stop
+  add-ons, Node.js → JS controls only). The tools run in Windows PowerShell 5.1 and PowerShell 7. Missing ones do not stop
   anything now,
 - that the settings are in `.composer/settings.json` and they can ask you to change them any time.
 

@@ -45,7 +45,7 @@ you need both, they are two plugins in one package.
 ## Scaffolding one
 
 ```powershell
-./tools/New-Addon.ps1 -Name Gus.Lookup -Type action
+./tools/New-Addon.ps1 -Name VatLookup -Type action
 ```
 
 `-Type` accepts `action`, `rule`, `datasource`, `formfield`, `labelprint`, `auth` (all .NET,

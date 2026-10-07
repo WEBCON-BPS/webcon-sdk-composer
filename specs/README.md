@@ -3,7 +3,7 @@
 Spec-Kit artifacts — one folder per feature, created by `/speckit.specify`:
 
 ```text
-specs/003-gus-lookup/
+specs/003-vat-lookup/
 ├── spec.md         what the add-on does, in language a non-developer can check
 ├── plan.md         how it will be built, checked against the constitution
 ├── tasks.md        ordered, actionable steps

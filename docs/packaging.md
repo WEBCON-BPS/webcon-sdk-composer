@@ -6,7 +6,7 @@ they make the same thing.
 ## With the script in this repo
 
 ```powershell
-./tools/Build-Addon.ps1 -Path addons/GusLookup
+./tools/Build-Addon.ps1 -Path addons/VatLookup
 ```
 
 - **.NET add-on** — `dotnet build -c Release`, then zips `<Assembly>.dll` + `<Assembly>.json`,
@@ -59,10 +59,10 @@ The manifest lists one entry per plugin:
   "extensions": [
     {
       "Guid": "8dc0b415-58f4-44ec-a84d-1e0a6ba7dfde",
-      "Name": "GUS lookup",
-      "Description": "Fills company data from the GUS registry by NIP.",
-      "Assembly": "Webcon.Addon.GusLookup",
-      "Class": "Webcon.Addon.GusLookup.Plugin.GusLookupAction",
+      "Name": "VAT lookup",
+      "Description": "Fills company data from the EU VIES service by VAT number.",
+      "Assembly": "Webcon.Addon.VatLookup",
+      "Class": "Webcon.Addon.VatLookup.Plugin.VatLookupAction",
       "Type": "CustomAction"
     }
   ],

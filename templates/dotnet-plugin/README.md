@@ -14,7 +14,7 @@ package** and run **Verify plugins**.
 ## Scaffolding from it
 
 ```powershell
-../../tools/New-Addon.ps1 -Name GusLookup -Type action
+../../tools/New-Addon.ps1 -Name VatLookup -Type action
 ```
 
 `New-Addon.ps1` copies this folder, renames the assembly and namespace, generates a fresh
