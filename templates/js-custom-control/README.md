@@ -21,6 +21,7 @@ produces `publish/AddonTemplate.zip` — import it under **Plugin packages -> Ne
 | File | |
 |---|---|
 | `src/CustomControlComponent.js` | the UI. Props: `fieldConfiguration`, `model`, `onChange`, `sdkConfiguration`. |
+| `src/readModelValue.js` | reads `model`, which on a real form is often an object, not a string. Use it instead of `String(model)`; `npm test` runs its check. |
 | `src/EmptyValueValidator.js` | `(model) => bool` — drives the *field is required* check. |
 | `src/AdditionalValidator.js` | `() => ({ isValid, message })` — blocks save with a message. |
 | `src/CustomControl.css` | scoped to this control at build time; plain class names are safe. |

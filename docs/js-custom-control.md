@@ -36,7 +36,7 @@ const CustomControlComponent = ({ fieldConfiguration, model, onChange, sdkConfig
 | Prop | What it is |
 |---|---|
 | `fieldConfiguration` | `{ displayName, description, isRequired, editMode, isNew, isAdmin, isDisabled }` — `editMode` is `Edit` \| `ReadOnly` \| `ReadOnlyHtml` |
-| `model` | the host field's current value |
+| `model` | the host field's current value. **On a real form it is often an object, not a string** — `String(model)` gives `"[object Object]"`, and the workbench never shows this because it passes a plain string. Read it with `src/readModelValue.js` from the template |
 | `onChange(value)` | writes a new value back to the field — **the only correct way**; never touch the DOM of the surrounding form |
 | `sdkConfiguration` | the raw JSON **string** an administrator typed next to the field in Designer Studio. Parse it in a `try/catch`: a config typo must not blank out the form |
 
