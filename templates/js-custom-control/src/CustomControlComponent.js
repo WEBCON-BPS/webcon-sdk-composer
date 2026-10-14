@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CustomControl.css';
+import readModelValue from './readModelValue';
 
 /**
  * Starter JS custom control.
@@ -39,7 +40,7 @@ const CustomControlComponent = ({ fieldConfiguration, model, onChange, sdkConfig
                 id="addon-template-input"
                 className="addon-template__input"
                 type="text"
-                value={model == null ? '' : String(model)}
+                value={readModelValue(model)}
                 disabled={readOnly}
                 onChange={(e) => onChange(e.target.value)}
             />
@@ -61,7 +62,7 @@ CustomControlComponent.propTypes = {
         isAdmin: PropTypes.bool.isRequired,
         isDisabled: PropTypes.bool.isRequired,
     }).isRequired,
-    /** Current value of the host field. */
+    /** Current value of the host field. On a real form often an object, not a string — read it with readModelValue. */
     model: PropTypes.any,
     /** Call with the new value to write it back to the field. */
     onChange: PropTypes.func.isRequired,
